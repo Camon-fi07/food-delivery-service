@@ -1,1 +1,12 @@
-@import url("./null.scss");
+@import "./null.scss";
+@import "./colors.scss";
+.app {
+  background-color: $background;
+  height: 100%;
+  color: $text;
+}
+
+label {
+  font-size: 18px;
+  color: $subTitle;
+}

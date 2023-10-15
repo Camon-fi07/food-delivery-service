@@ -29,7 +29,8 @@ aside {
   display: block;
 }
 html,
-body {
+body,
+#root {
   height: 100%;
   width: 100%;
   font-size: 100%;
@@ -43,6 +44,7 @@ input,
 button,
 textarea {
   font-family: inherit;
+  text-align: left;
 }
 input::-ms-clear {
   display: none;
