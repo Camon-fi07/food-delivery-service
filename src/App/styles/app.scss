@@ -2,7 +2,7 @@
 @import "./colors.scss";
 .app {
   background-color: $background;
-  height: 100%;
+  min-height: 100%;
   color: $text;
 }
 

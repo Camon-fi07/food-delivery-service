@@ -1,6 +1,8 @@
 @import "App/styles/colors.scss";
 
 .registration {
+  padding-top: 15px;
+  min-height: 100%;
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -8,37 +10,7 @@
   gap: 20px;
 }
 .title {
+  text-align: center;
   font-size: 36px;
   font-weight: 700;
-}
-.value {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.field {
-  background-color: $field;
-  height: 35px;
-  border: 1px solid $fieldBorder;
-  border-radius: 8px;
-  padding-left: 5px;
-  font-size: 20px;
-  color: $text;
-  &::placeholder {
-    color: #fff;
-  }
-}
-
-.button {
-  font-weight: 500;
-  height: 40px;
-  width: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $text;
-  font-size: 24px;
-  background-color: $btnBackground;
 }
