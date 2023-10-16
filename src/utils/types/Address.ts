@@ -1,21 +1,21 @@
 export enum AddressLevel {
-  Region,
-  AdministrativeArea,
-  MunicipalArea,
-  RuralUrbanSettlement,
-  City,
-  Locality,
-  ElementOfPlanningStructure,
-  ElementOfRoadNetwork,
-  Land,
-  Building,
-  Room,
-  RoomInRooms,
-  AutonomousRegionLevel,
-  IntracityLevel,
-  AdditionalTerritoriesLevel,
-  LevelOfObjectsInAdditionalTerritories,
-  CarPlace,
+  Region = "Region",
+  AdministrativeArea = "AdministrativeArea",
+  MunicipalArea = "MunicipalArea",
+  RuralUrbanSettlement = "RuralUrbanSettlement",
+  City = "City",
+  Locality = "Locality",
+  ElementOfPlanningStructure = "ElementOfPlanningStructure",
+  ElementOfRoadNetwork = "ElementOfRoadNetwork",
+  Land = "Land",
+  Room = "Room",
+  RoomInRooms = "RoomInRooms",
+  AutonomousRegionLevel = "AutonomousRegionLevel",
+  IntracityLevel = "IntracityLevel",
+  AdditionalTerritoriesLevel = "AdditionalTerritoriesLevel",
+  LevelOfObjectsInAdditionalTerritories = "LevelOfObjectsInAdditionalTerritories",
+  CarPlace = "CarPlace",
+  Building = "Building",
 }
 
 export interface Address {
@@ -26,9 +26,4 @@ export interface Address {
   objectLevelText: string;
 }
 
-export interface AvailableAddress {
-  regions: Address[];
-  cities: Address[];
-  streets: Address[];
-  houses: Address[];
-}
+export type AvailableAddress = Record<AddressLevel, Address[]>;
