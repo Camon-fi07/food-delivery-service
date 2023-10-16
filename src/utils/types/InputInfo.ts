@@ -6,4 +6,5 @@ export interface InputInfo {
   name: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>) => void;
   options?: { value: number | string; name: string }[];
+  onBlur?: (e: React.FocusEvent<unknown>) => void;
 }

@@ -5,7 +5,7 @@ export const FormValue = (props: InputInfo) => {
   return (
     <div className={style.form_value}>
       <label htmlFor={props.name}>{props.label}</label>
-      {props.isError && <span className={style.error}></span>}
+      {props.isError && <span className={style.error}>{props.errorName}</span>}
       {props.type == "select" ? (
         <select name={props.name} className={style.field} onChange={props.handleChange}>
           <option value="">Выбор</option>
@@ -16,9 +16,10 @@ export const FormValue = (props: InputInfo) => {
       ) : (
         <input
           className={`${style.field} ${props.isError ? style.field_error : ""}`}
-          type="text"
+          type={props.type}
           name={props.name}
           onChange={props.handleChange}
+          onBlur={props.onBlur}
         />
       )}
     </div>

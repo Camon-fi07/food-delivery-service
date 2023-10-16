@@ -16,3 +16,12 @@
   font-size: 20px;
   color: $text;
 }
+
+.error {
+  color: $error;
+  font-size: 22px;
+}
+
+.field_error {
+  border: 1px solid $error;
+}

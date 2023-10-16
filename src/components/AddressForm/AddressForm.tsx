@@ -3,11 +3,23 @@ import { useEffect, useState } from "react";
 import { getAddress } from "utils/helpers/getAddress";
 import { Address } from "utils/types/Address";
 import style from "./style.module.scss";
-export const AddressForm = (props: { handleChange: (value: string) => void }) => {
+export const AddressForm = (props: { isError: string | undefined; handleChange: (value: string) => void }) => {
   const [availableAddress, setAvailableAddress] = useState<Address[][]>([]);
   const [selectedId, setSelectedId] = useState<number[]>([0]);
   const [changeIndex, setChangeIndex] = useState(0);
   useEffect(() => {
+    if (selectedId[changeIndex] === 0 && availableAddress.length !== 0) {
+      setSelectedId((prevValue) => {
+        prevValue.length = changeIndex + 1;
+        return [...prevValue];
+      });
+      setAvailableAddress((prevValue) => {
+        prevValue.length = changeIndex + 1;
+        return [...prevValue];
+      });
+      props.handleChange("");
+      return;
+    }
     getAddress(selectedId[changeIndex]).then((res) => {
       if (res.data.length) {
         setAvailableAddress((prevValue) => {
@@ -29,7 +41,7 @@ export const AddressForm = (props: { handleChange: (value: string) => void }) =>
         return [...prevValue];
       });
     }
-  }, [changeIndex, selectedId]);
+  }, [changeIndex, selectedId[changeIndex]]);
   return (
     <div className={style.addressSelect}>
       <h1 className={style.title}>Адрес проживания</h1>
@@ -49,6 +61,8 @@ export const AddressForm = (props: { handleChange: (value: string) => void }) =>
             value: addressItem.objectId,
             name: addressItem.text,
           }))}
+          isError={props.isError && index == availableAddress.length - 1}
+          errorName={props.isError}
         />
       ))}
     </div>
