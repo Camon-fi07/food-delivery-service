@@ -2,7 +2,7 @@ import { FormValue } from "components/formValue/Formvalue";
 import { useEffect, useState } from "react";
 import { getAddress } from "utils/helpers/getAddress";
 import { Address } from "utils/types/Address";
-
+import style from "./style.module.scss";
 export const AddressForm = (props: { handleChange: (value: string) => void }) => {
   const [availableAddress, setAvailableAddress] = useState<Address[][]>([]);
   const [selectedId, setSelectedId] = useState<number[]>([0]);
@@ -31,7 +31,8 @@ export const AddressForm = (props: { handleChange: (value: string) => void }) =>
     }
   }, [changeIndex, selectedId]);
   return (
-    <div>
+    <div className={style.addressSelect}>
+      <h1 className={style.title}>Адрес проживания</h1>
       {availableAddress.map((item, index) => (
         <FormValue
           handleChange={(e) => {
