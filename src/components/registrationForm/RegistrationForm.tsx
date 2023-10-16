@@ -56,7 +56,11 @@ export const RegistrationForm = () => {
         isError={errors["phone"] && touched["phone"]}
         errorName={errors["phone"]}
       />
-      <AddressForm handleChange={handleChange} />
+      <AddressForm
+        handleChange={(value) => {
+          formik.setFieldValue("address", value);
+        }}
+      />
       <button className={style.button} type="submit">
         Зарегистрироваться
       </button>

@@ -25,5 +25,3 @@ export interface Address {
   objectLevel: AddressLevel;
   objectLevelText: string;
 }
-
-export type AvailableAddress = Record<AddressLevel, Address[]>;
