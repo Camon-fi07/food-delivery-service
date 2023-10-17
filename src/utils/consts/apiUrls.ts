@@ -1,3 +1,6 @@
 export const root = "https://food-delivery.kreosoft.ru/api";
-export const addressSearch = `${root}/address/search`;
-export const registration = `${root}/account/register`;
+const address = `${root}/address`;
+const users = `${root}/account`;
+export const addressSearch = `${address}/search`;
+export const registration = `${users}/register`;
+export const userProfile = `${users}/profile`;

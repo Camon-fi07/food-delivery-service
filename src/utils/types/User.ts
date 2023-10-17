@@ -1,4 +1,4 @@
-export interface UserInfo {
+export interface User {
   fullName: string;
   gender: string;
   phoneNumber: string;
@@ -8,6 +8,12 @@ export interface UserInfo {
   password: string;
 }
 
-export interface User extends UserInfo {
+export interface UserDto extends User {
+  id: string;
+}
+
+export interface UserState {
   token: string;
+  isAuth: boolean;
+  user: UserDto;
 }

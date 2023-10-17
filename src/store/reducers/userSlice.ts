@@ -1,15 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { User, UserInfo } from "utils/types/User";
+import { UserDto, UserState } from "utils/types/User";
 
-const initialState: User = {
-  addressId: "",
-  birthDate: "",
-  email: "",
-  fullName: "",
-  gender: "",
-  password: "",
-  phoneNumber: "",
+const initialState: UserState = {
+  user: {
+    id: "",
+    addressId: "",
+    birthDate: "",
+    email: "",
+    fullName: "",
+    gender: "",
+    password: "",
+    phoneNumber: "",
+  },
   token: "",
+  isAuth: false,
 };
 
 export const userSlice = createSlice({
@@ -19,12 +23,13 @@ export const userSlice = createSlice({
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
-    setUser: (state, action: PayloadAction<UserInfo>) => {
-      state.phoneNumber = action.payload.phoneNumber;
-      state.password = action.payload.password;
-      state.addressId = action.payload.addressId;
-      state.gender = action.payload.gender;
-      state.birthDate = action.payload.birthDate;
+    setUser: (state, action: PayloadAction<UserDto>) => {
+      state.user = action.payload;
+      state.isAuth = true;
+    },
+    logOut: (state) => {
+      state.user = Object.assign(initialState.user);
+      state.isAuth = false;
     },
   },
 });
