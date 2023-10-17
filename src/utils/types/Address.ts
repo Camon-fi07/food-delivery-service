@@ -25,3 +25,9 @@ export interface Address {
   objectLevel: AddressLevel;
   objectLevelText: string;
 }
+
+export interface AddressChoice {
+  isError: boolean | "" | undefined;
+  errorName: string | undefined;
+  handleChange: (value: string) => void;
+}

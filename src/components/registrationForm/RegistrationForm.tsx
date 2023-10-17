@@ -4,7 +4,9 @@ import { FormValue } from "components/formValue/Formvalue";
 import { AddressForm } from "components/AddressForm/AddressForm";
 import { Gender } from "utils/types/Gender";
 import { registrationValidateScheme } from "utils/consts/validation";
-export const RegistrationForm = () => {
+import { RegistrationUser } from "utils/types/RegistrationUser";
+import { phoneMask } from "utils/helpers/phoneMask";
+export const RegistrationForm = (props: { onSubmit: (value: RegistrationUser) => void }) => {
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -17,13 +19,18 @@ export const RegistrationForm = () => {
     },
     validationSchema: registrationValidateScheme,
     onSubmit: (values) => {
-      console.log(values);
+      props.onSubmit(values);
     },
   });
   const { errors, touched, handleChange, handleSubmit, handleBlur } = formik;
-
   return (
-    <form className={style.registration_form} onSubmit={handleSubmit}>
+    <form
+      className={style.registration_form}
+      onError={() => {
+        console.log(errors);
+      }}
+      onSubmit={handleSubmit}
+    >
       <FormValue
         handleChange={handleChange}
         label="ФИО"
@@ -46,7 +53,7 @@ export const RegistrationForm = () => {
         ]}
       />
       <FormValue
-        handleChange={handleChange}
+        handleChange={(e) => handleChange(phoneMask(formik.values.phoneNumber, e))}
         label="Телефон"
         name="phoneNumber"
         type="tel"
@@ -63,7 +70,7 @@ export const RegistrationForm = () => {
         errorName={errors["email"]}
         onBlur={handleBlur}
       />
-      <FormValue handleChange={handleChange} label="Дата рождения" name="birthDate" type="date" />
+      <FormValue onBlur={handleBlur} handleChange={handleChange} label="Дата рождения" name="birthDate" type="date" />
       <FormValue
         handleChange={handleChange}
         label="Пароль"
@@ -74,12 +81,19 @@ export const RegistrationForm = () => {
         onBlur={handleBlur}
       />
       <AddressForm
-        isError={errors["addressId"]}
+        isError={errors["addressId"] && touched["addressId"]}
+        errorName={errors["addressId"]}
         handleChange={(value) => {
           formik.setFieldValue("addressId", value);
         }}
       />
-      <button className={style.button} type="submit">
+      <button
+        onClick={() => {
+          console.log(errors);
+        }}
+        className={style.button}
+        type="submit"
+      >
         Зарегистрироваться
       </button>
     </form>

@@ -1,9 +1,9 @@
 import { FormValue } from "components/formValue/Formvalue";
 import { useEffect, useState } from "react";
 import { getAddress } from "utils/helpers/getAddress";
-import { Address } from "utils/types/Address";
+import { Address, AddressChoice } from "utils/types/Address";
 import style from "./style.module.scss";
-export const AddressForm = (props: { isError: string | undefined; handleChange: (value: string) => void }) => {
+export const AddressForm = (props: AddressChoice) => {
   const [availableAddress, setAvailableAddress] = useState<Address[][]>([]);
   const [selectedId, setSelectedId] = useState<number[]>([0]);
   const [changeIndex, setChangeIndex] = useState(0);
@@ -61,8 +61,8 @@ export const AddressForm = (props: { isError: string | undefined; handleChange: 
             value: addressItem.objectId,
             name: addressItem.text,
           }))}
-          isError={props.isError && index == availableAddress.length - 1}
-          errorName={props.isError}
+          isError={props.isError && index === availableAddress.length - 1}
+          errorName={props.errorName}
         />
       ))}
     </div>
