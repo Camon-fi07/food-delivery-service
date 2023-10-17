@@ -1,4 +1,4 @@
-export interface RegistrationUser {
+export interface UserInfo {
   fullName: string;
   gender: string;
   phoneNumber: string;
@@ -6,4 +6,8 @@ export interface RegistrationUser {
   addressId: string;
   email: string;
   password: string;
+}
+
+export interface User extends UserInfo {
+  token: string;
 }

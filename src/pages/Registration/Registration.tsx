@@ -1,9 +1,9 @@
-import { RegistrationUser } from "utils/types/RegistrationUser";
+import { UserInfo } from "utils/types/User";
 import style from "./style.module.scss";
 import { RegistrationForm } from "components/registrationForm/RegistrationForm";
 import { postRegistration } from "utils/helpers/postRegistration";
 export const Registration = () => {
-  const onSubmit = (values: RegistrationUser) => {
+  const onSubmit = (values: UserInfo) => {
     postRegistration(values)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
