@@ -33,13 +33,13 @@ export const Head = () => {
         <ul className={`${!isVisible ? style.hidden : ""} ${style.user_info}`}>
           {userInfo.isAuth ? (
             <>
-              <li>Вход</li>
-              <li>Регистрация</li>
+              <li>Профиль</li>
+              <li>Корзина</li>
             </>
           ) : (
             <>
-              <li>Профиль</li>
-              <li>Корзина</li>
+              <li>Вход</li>
+              <li>Регистрация</li>
             </>
           )}
         </ul>
