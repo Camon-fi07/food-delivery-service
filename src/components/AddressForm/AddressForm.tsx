@@ -4,64 +4,64 @@ import { getAddress } from "utils/helpers/getAddress";
 import { Address, AddressChoice } from "utils/types/Address";
 import style from "./style.module.scss";
 export const AddressForm = (props: AddressChoice) => {
-  const [availableAddress, setAvailableAddress] = useState<Address[][]>([]);
-  const [selectedId, setSelectedId] = useState<number[]>([0]);
+  const [availableAddresses, setAvailableAddresses] = useState<Address[][]>([]);
+  const [selectedAddresses, setSelectedAddresses] = useState<{ id: number; index: number }[]>([{ id: 0, index: 0 }]);
   const [changeIndex, setChangeIndex] = useState(0);
   useEffect(() => {
-    if (selectedId[changeIndex] === 0 && availableAddress.length !== 0) {
-      setSelectedId((prevValue) => {
+    if (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0) {
+      setSelectedAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
-      setAvailableAddress((prevValue) => {
+      setAvailableAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
       props.handleChange("");
       return;
     }
-    getAddress(selectedId[changeIndex]).then((res) => {
+    getAddress(selectedAddresses[changeIndex].id).then((res) => {
       if (res.data.length) {
-        setAvailableAddress((prevValue) => {
+        setAvailableAddresses((prevValue) => {
           prevValue[prevValue.length ? changeIndex + 1 : 0] = res.data;
           return [...prevValue];
         });
       } else {
-        const id = availableAddress[changeIndex].find((item) => item.objectId === selectedId[changeIndex])!.objectGuid;
+        const id = availableAddresses[changeIndex][selectedAddresses[changeIndex].index].objectGuid;
         props.handleChange(id);
       }
     });
-    if (changeIndex !== selectedId.length - 1) {
-      setSelectedId((prevValue) => {
+    if (changeIndex !== selectedAddresses.length - 1) {
+      setSelectedAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
-      setAvailableAddress((prevValue) => {
+      setAvailableAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
     }
-  }, [changeIndex, selectedId[changeIndex]]);
+  }, [changeIndex, selectedAddresses[changeIndex]]);
   return (
     <div className={style.addressSelect}>
       <h1 className={style.title}>Адрес проживания</h1>
-      {availableAddress.map((item, index) => (
+      {availableAddresses.map((item, index) => (
         <FormValue
           handleChange={(e) => {
             setChangeIndex(index);
-            setSelectedId((prevValue) => {
-              prevValue[index] = Number(e.target.value);
+            setSelectedAddresses((prevValue) => {
+              prevValue[index] = { id: item[Number(e.target.value)].objectId, index: Number(e.target.value) };
               return [...prevValue];
             });
           }}
-          label={item[0].objectLevelText}
-          name={item[0].objectLevel}
+          label={selectedAddresses[index] ? item[selectedAddresses[index].index].objectLevelText : "Следующий элемент"}
+          name={selectedAddresses[index] ? item[selectedAddresses[index].index].objectLevelText : "nextAddress"}
           type="select"
-          options={item.map((addressItem) => ({
-            value: addressItem.objectId,
+          options={item.map((addressItem, itemIndex) => ({
+            value: itemIndex,
             name: addressItem.text,
           }))}
-          isError={props.isError && index === availableAddress.length - 1}
+          isError={props.isError && index === availableAddresses.length - 1}
           errorName={props.errorName}
         />
       ))}
