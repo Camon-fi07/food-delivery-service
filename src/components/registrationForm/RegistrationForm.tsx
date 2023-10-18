@@ -4,9 +4,9 @@ import { FormValue } from "components/formValue/Formvalue";
 import { AddressForm } from "components/AddressForm/AddressForm";
 import { Gender } from "utils/types/Gender";
 import { registrationValidateScheme } from "utils/consts/validation";
-import { RegistrationUser } from "utils/types/RegistrationUser";
+import { User } from "utils/types/User";
 import { phoneMask } from "utils/helpers/phoneMask";
-export const RegistrationForm = (props: { onSubmit: (value: RegistrationUser) => void }) => {
+export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => {
   const formik = useFormik({
     initialValues: {
       fullName: "",
