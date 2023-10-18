@@ -5,10 +5,13 @@ import { Address, AddressChoice } from "utils/types/Address";
 import style from "./style.module.scss";
 export const AddressForm = (props: AddressChoice) => {
   const [availableAddresses, setAvailableAddresses] = useState<Address[][]>([]);
-  const [selectedAddresses, setSelectedAddresses] = useState<{ id: number; index: number }[]>([{ id: 0, index: 0 }]);
+  const [selectedAddresses, setSelectedAddresses] = useState<{ id: number; index: number }[]>([{ id: 0, index: -1 }]);
   const [changeIndex, setChangeIndex] = useState(0);
   useEffect(() => {
-    if (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0) {
+    if (
+      changeIndex !== selectedAddresses.length - 1 ||
+      (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0)
+    ) {
       setSelectedAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
@@ -17,8 +20,7 @@ export const AddressForm = (props: AddressChoice) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
-      props.handleChange("");
-      return;
+      if (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0) return;
     }
     getAddress(selectedAddresses[changeIndex].id).then((res) => {
       if (res.data.length) {
@@ -31,16 +33,6 @@ export const AddressForm = (props: AddressChoice) => {
         props.handleChange(id);
       }
     });
-    if (changeIndex !== selectedAddresses.length - 1) {
-      setSelectedAddresses((prevValue) => {
-        prevValue.length = changeIndex + 1;
-        return [...prevValue];
-      });
-      setAvailableAddresses((prevValue) => {
-        prevValue.length = changeIndex + 1;
-        return [...prevValue];
-      });
-    }
   }, [changeIndex, selectedAddresses[changeIndex]]);
   return (
     <div className={style.addressSelect}>
@@ -50,12 +42,23 @@ export const AddressForm = (props: AddressChoice) => {
           handleChange={(e) => {
             setChangeIndex(index);
             setSelectedAddresses((prevValue) => {
-              prevValue[index] = { id: item[Number(e.target.value)].objectId, index: Number(e.target.value) };
+              if (e.target.value)
+                prevValue[index] = { id: item[Number(e.target.value)].objectId, index: Number(e.target.value) };
+              else prevValue[index] = { id: 0, index: -1 };
+
               return [...prevValue];
             });
           }}
-          label={selectedAddresses[index] ? item[selectedAddresses[index].index].objectLevelText : "Следующий элемент"}
-          name={selectedAddresses[index] ? item[selectedAddresses[index].index].objectLevelText : "nextAddress"}
+          label={
+            selectedAddresses[index] && selectedAddresses[index].index !== -1
+              ? item[selectedAddresses[index].index].objectLevelText
+              : "Следующий элемент"
+          }
+          name={
+            selectedAddresses[index] && selectedAddresses[index].index !== -1
+              ? item[selectedAddresses[index].index].objectLevelText
+              : "nextAddress"
+          }
           type="select"
           options={item.map((addressItem, itemIndex) => ({
             value: itemIndex,
