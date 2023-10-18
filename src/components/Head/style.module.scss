@@ -1,0 +1,71 @@
+@import "App/styles/colors.scss";
+
+.head {
+  color: #fff;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1fr 20fr 10fr 1fr;
+}
+
+.logo {
+  grid-column-start: 2;
+  font-size: 28px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.burger_menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  & img {
+    width: 50px;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.user_info {
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transform: translate(0, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $field;
+  padding: 10px;
+  gap: 10px;
+  & li {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .head {
+    grid-template-columns: 1fr repeat(2, 5fr) 1fr;
+  }
+  .menu {
+    justify-content: space-around;
+  }
+  .user_info {
+    position: static;
+    transform: translate(0, 0);
+    top: 0;
+    background: none;
+    flex-direction: row;
+    padding: 0;
+    gap: 0;
+    justify-content: space-around;
+  }
+}
