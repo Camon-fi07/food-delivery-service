@@ -6,6 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { Registration } from "pages/Registration/Registration.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Login } from "pages/Login/Login.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <div>Login</div>,
+        element: <Login />,
       },
       {
         path: "/profile",

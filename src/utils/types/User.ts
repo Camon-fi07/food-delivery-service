@@ -17,3 +17,8 @@ export interface UserState {
   isAuth: boolean;
   user: UserDto;
 }
+
+export interface Authorization {
+  email: string;
+  password: string;
+}
