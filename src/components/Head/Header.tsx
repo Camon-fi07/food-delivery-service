@@ -2,6 +2,7 @@ import { useAppSelector } from "utils/hooks/redux";
 import { useEffect, useState } from "react";
 import burgerMenuIcon from "assets/burger_menu_icon.svg.png";
 import style from "./style.module.scss";
+import { Link } from "react-router-dom";
 export const Head = () => {
   const userInfo = useAppSelector((state) => state.persistedReducer);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -16,7 +17,9 @@ export const Head = () => {
   }, []);
   return (
     <header className={style.head}>
-      <h1 className={style.logo}>HITs delivery</h1>
+      <h1 className={style.logo}>
+        <Link to={"/"}>HITs delivery</Link>
+      </h1>
       <div className={style.menu}>
         {windowWidth < 768 ? (
           <button
@@ -33,13 +36,21 @@ export const Head = () => {
         <ul className={`${!isVisible ? style.hidden : ""} ${style.user_info}`}>
           {userInfo.isAuth ? (
             <>
-              <li>Профиль</li>
-              <li>Корзина</li>
+              <li>
+                <Link to={"profile"}>Профиль</Link>
+              </li>
+              <li>
+                <Link to={"cart"}>Корзина</Link>
+              </li>
             </>
           ) : (
             <>
-              <li>Вход</li>
-              <li>Регистрация</li>
+              <li>
+                <Link to={"login"}>Вход</Link>
+              </li>
+              <li>
+                <Link to={"registration"}>Регистрация</Link>
+              </li>
             </>
           )}
         </ul>
