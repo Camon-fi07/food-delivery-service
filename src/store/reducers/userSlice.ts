@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserDto, UserState } from "utils/types/User";
 import { getToken, getUser } from "./UserAsyncActions";
-import { AxiosError } from "axios";
 
 const initialState: UserState = {
   data: {
@@ -26,7 +25,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    logOut: () => {
+    clear: () => {
       return Object.assign(initialState);
     },
   },
@@ -40,10 +39,9 @@ export const userSlice = createSlice({
       state.isAuth = true;
       state.isLoading = false;
     },
-    [getUser.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
+    [getUser.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.error = action.payload.message;
-      console.log(action.payload);
+      state.error = action.payload;
     },
     [getToken.pending.type]: (state) => {
       state.error = "";
@@ -53,9 +51,9 @@ export const userSlice = createSlice({
       state.data.token = action.payload;
       state.isLoading = false;
     },
-    [getToken.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
+    [getToken.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.error = action.payload.message;
+      state.error = action.payload;
     },
   },
 });

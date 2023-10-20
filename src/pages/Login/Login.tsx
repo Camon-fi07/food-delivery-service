@@ -4,14 +4,17 @@ import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { getToken } from "store/reducers/UserAsyncActions";
 import { userLogin } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector((state) => state.persistedReducer);
+  const { error } = useAppSelector((state) => state.userReducer);
+  const navigate = useNavigate();
   const onSubmit = (values: Authorization) => {
-    dispatch(getToken({ path: userLogin, value: values }));
+    dispatch(getToken({ path: userLogin, value: values })).then(() => {
+      navigate("/");
+    });
   };
-
   return (
     <div className={style.login}>
       {error ? <span>{error}</span> : ""}

@@ -4,12 +4,16 @@ import { getToken } from "store/reducers/UserAsyncActions";
 import { registration } from "utils/consts/apiUrls";
 import { User } from "utils/types/User";
 import style from "./style.module.scss";
+import { useNavigate } from "react-router-dom";
 
 export const Registration = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector((state) => state.persistedReducer);
+  const { error } = useAppSelector((state) => state.userReducer);
   const onSubmit = (values: User) => {
-    dispatch(getToken({ path: registration, value: values }));
+    dispatch(getToken({ path: registration, value: values })).then(() => {
+      navigate("/");
+    });
   };
   return (
     <div className={style.registration}>

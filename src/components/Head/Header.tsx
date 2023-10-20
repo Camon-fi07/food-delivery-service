@@ -4,7 +4,7 @@ import burgerMenuIcon from "assets/burger_menu_icon.svg.png";
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
 export const Head = () => {
-  const userInfo = useAppSelector((state) => state.persistedReducer);
+  const userInfo = useAppSelector((state) => state.userReducer);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isVisible, setIsVisible] = useState(true);
   useEffect(() => {
