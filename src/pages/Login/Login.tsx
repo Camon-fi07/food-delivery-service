@@ -1,18 +1,15 @@
 import { LoginForm } from "components/LoginForm/LoginForm";
 import { Authorization } from "utils/types/User";
-import { useState } from "react";
-import { useAppDispatch } from "utils/hooks/redux";
-import { login } from "utils/helpers/login";
-import { userSlice } from "store/reducers/userSlice";
+import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
+import { getToken } from "store/reducers/UserAsyncActions";
+import { userLogin } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
 
 export const Login = () => {
-  const [error, setError] = useState("");
   const dispatch = useAppDispatch();
-  const userActions = userSlice.actions;
+  const { error } = useAppSelector((state) => state.persistedReducer);
   const onSubmit = (values: Authorization) => {
-    setError("");
-    login(setError, values, (value) => dispatch(userActions.setToken(value)));
+    dispatch(getToken({ path: userLogin, value: values }));
   };
 
   return (
