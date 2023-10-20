@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { FormValue } from "components/formValue/Formvalue";
 import { Authorization } from "utils/types/User";
 import style from "./style.module.scss";
+import { loginValidateScheme } from "utils/consts/validation";
 
 export const LoginForm = (props: { onSubmit: (value: Authorization) => void }) => {
   const formik = useFormik({
@@ -9,6 +10,7 @@ export const LoginForm = (props: { onSubmit: (value: Authorization) => void }) =
       email: "",
       password: "",
     },
+    validationSchema: loginValidateScheme,
     onSubmit: (values) => {
       props.onSubmit(values);
     },
