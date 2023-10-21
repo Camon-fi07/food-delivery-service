@@ -8,4 +8,5 @@ export interface InputInfo {
   options?: { value: number | string; name: string }[];
   onBlur?: (e: React.FocusEvent<unknown>) => void;
   onInputChange?: (newValue: string) => void;
+  defaultValue?: string;
 }

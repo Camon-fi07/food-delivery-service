@@ -5,7 +5,7 @@ import arrowDown from "assets/arrowDown.svg";
 import style from "./style.module.scss";
 
 export const DropDown = (props: DropDownInfo) => {
-  const [chosenElement, setChosenElement] = useState("");
+  const [chosenElement, setChosenElement] = useState(props.defaultValue || "");
   const [isVisible, setIsVisible] = useState(false);
 
   return (
