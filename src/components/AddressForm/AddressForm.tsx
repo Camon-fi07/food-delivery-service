@@ -56,7 +56,7 @@ export const AddressForm = (props: AddressChoice) => {
           }
           name={
             selectedAddresses[index] && selectedAddresses[index].index !== -1
-              ? item[selectedAddresses[index].index].objectLevelText
+              ? item[selectedAddresses[index].index].objectLevel
               : "nextAddress"
           }
           type="select"
