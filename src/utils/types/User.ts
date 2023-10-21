@@ -13,7 +13,16 @@ export interface UserDto extends User {
 }
 
 export interface UserState {
-  token: string;
+  data: {
+    token: string;
+    user: UserDto;
+  };
+  isLoading: boolean;
   isAuth: boolean;
-  user: UserDto;
+  error: string;
+}
+
+export interface Authorization {
+  email: string;
+  password: string;
 }

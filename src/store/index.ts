@@ -9,9 +9,9 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, userReducer);
+const userPersistedReducer = persistReducer(persistConfig, userReducer);
 
-const rootReducer = combineReducers({ persistedReducer });
+const rootReducer = combineReducers({ userReducer: userPersistedReducer });
 
 export const setupStore = () => configureStore({ reducer: rootReducer, devTools: true });
 
