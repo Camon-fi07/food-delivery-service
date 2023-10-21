@@ -6,6 +6,7 @@ import { Gender } from "utils/types/Gender";
 import { registrationValidateScheme } from "utils/consts/validation";
 import { User } from "utils/types/User";
 import { phoneMask } from "utils/helpers/phoneMask";
+
 export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => {
   const formik = useFormik({
     initialValues: {
@@ -89,7 +90,7 @@ export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => 
       />
       <button
         onClick={() => {
-          console.log(errors);
+          console.log(formik.values);
         }}
         className={style.button}
         type="submit"

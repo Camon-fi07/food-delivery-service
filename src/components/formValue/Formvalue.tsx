@@ -1,18 +1,20 @@
 import { InputInfo } from "utils/types/InputInfo";
 import style from "./style.module.scss";
+import { DropDown } from "components/dropDown/DropDown";
 
 export const FormValue = (props: InputInfo) => {
   return (
     <div className={style.form_value}>
       <label htmlFor={props.name}>{props.label}</label>
       {props.isError && <span className={style.error}>{props.errorName}</span>}
-      {props.type == "select" ? (
-        <select name={props.name} className={style.field} onChange={props.handleChange}>
-          <option value="">Выбор</option>
-          {props.options!.map((option) => (
-            <option value={option.value}>{option.name}</option>
-          ))}
-        </select>
+      {props.type == "select" || props.type == "selectInput" ? (
+        <DropDown
+          handleChange={props.handleChange}
+          name={props.name}
+          type={props.type}
+          options={props.options!}
+          onInputChange={props.onInputChange}
+        />
       ) : (
         <input
           className={`${style.field} ${props.isError ? style.field_error : ""}`}
