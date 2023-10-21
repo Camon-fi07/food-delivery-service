@@ -1,4 +1,4 @@
-import { InputInfo } from "utils/types/InputInfo";
+import { InputInfo } from "utils/types/FormInfo";
 import style from "./style.module.scss";
 import { DropDown } from "components/dropDown/DropDown";
 
