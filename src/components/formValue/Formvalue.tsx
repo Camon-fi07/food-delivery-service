@@ -14,6 +14,7 @@ export const FormValue = (props: InputInfo) => {
           type={props.type}
           options={props.options!}
           onInputChange={props.onInputChange}
+          defaultValue={props.defaultValue}
         />
       ) : (
         <input
@@ -22,6 +23,7 @@ export const FormValue = (props: InputInfo) => {
           name={props.name}
           onChange={props.handleChange}
           onBlur={props.onBlur}
+          defaultValue={props.defaultValue}
         />
       )}
     </div>
