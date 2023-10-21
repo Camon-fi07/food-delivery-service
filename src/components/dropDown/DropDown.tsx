@@ -18,11 +18,12 @@ export const DropDown = (props: DropDownInfo) => {
           value={chosenElement}
           onChange={(e) => {
             setChosenElement(e.target.value);
+            if (props.onInputChange) props.onInputChange(e.target.value);
           }}
         />
       ) : (
         <button type="button" className={style.button} onClick={() => setIsVisible(!isVisible)}>
-          <span>{chosenElement && "-- Выбор --"}</span>
+          <span>{chosenElement ? chosenElement : "-- Выбор --"}</span>
           <img src={isVisible ? arrowDown : arrowUp} />
         </button>
       )}

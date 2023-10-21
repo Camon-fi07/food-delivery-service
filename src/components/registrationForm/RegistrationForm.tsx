@@ -6,7 +6,7 @@ import { Gender } from "utils/types/Gender";
 import { registrationValidateScheme } from "utils/consts/validation";
 import { User } from "utils/types/User";
 import { phoneMask } from "utils/helpers/phoneMask";
-import { DropDown } from "components/dropDown/DropDown";
+
 export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => {
   const formik = useFormik({
     initialValues: {
@@ -41,7 +41,7 @@ export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => 
         errorName={errors["fullName"]}
         onBlur={handleBlur}
       />
-      {/* <FormValue
+      <FormValue
         handleChange={handleChange}
         label="Пол"
         name="gender"
@@ -52,7 +52,7 @@ export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => 
           { value: Gender.Male, name: "Мужской" },
           { value: Gender.Female, name: "Женский" },
         ]}
-      /> */}
+      />
       <FormValue
         handleChange={(e) => handleChange(phoneMask(formik.values.phoneNumber, e))}
         label="Телефон"
@@ -87,15 +87,6 @@ export const RegistrationForm = (props: { onSubmit: (value: User) => void }) => 
         handleChange={(value) => {
           formik.setFieldValue("addressId", value);
         }}
-      />
-      <DropDown
-        handleChange={handleChange}
-        name="gender"
-        type="selectInput"
-        options={[
-          { value: Gender.Male, name: "Мужской" },
-          { value: Gender.Female, name: "Женский" },
-        ]}
       />
       <button
         onClick={() => {

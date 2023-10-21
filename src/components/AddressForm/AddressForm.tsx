@@ -5,13 +5,11 @@ import { Address, AddressChoice } from "utils/types/Address";
 import style from "./style.module.scss";
 export const AddressForm = (props: AddressChoice) => {
   const [availableAddresses, setAvailableAddresses] = useState<Address[][]>([]);
-  const [selectedAddresses, setSelectedAddresses] = useState<{ id: number; index: number }[]>([{ id: 0, index: -1 }]);
-  const [changeIndex, setChangeIndex] = useState(0);
+  const [selectedAddresses, setSelectedAddresses] = useState<Address[]>([]);
+  const [queryAddress, setQueryAddress] = useState<{ index: number; query: string[] }>({ index: -1, query: [] });
+  const [changeIndex, setChangeIndex] = useState(-1);
   useEffect(() => {
-    if (
-      changeIndex !== selectedAddresses.length - 1 ||
-      (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0)
-    ) {
+    if (changeIndex < selectedAddresses.length - 1) {
       setSelectedAddresses((prevValue) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
@@ -20,20 +18,34 @@ export const AddressForm = (props: AddressChoice) => {
         prevValue.length = changeIndex + 1;
         return [...prevValue];
       });
-      if (selectedAddresses[changeIndex].id === 0 && availableAddresses.length !== 0) return;
+      setQueryAddress((prevValue) => {
+        prevValue.query.length = changeIndex + 1;
+        return { index: prevValue.query.length - 1, query: [...prevValue.query] };
+      });
     }
-    getAddress(selectedAddresses[changeIndex].id).then((res) => {
+    const id = changeIndex !== -1 ? selectedAddresses[changeIndex].objectId : 0;
+    getAddress(id).then((res) => {
       if (res.data.length) {
         setAvailableAddresses((prevValue) => {
           prevValue[prevValue.length ? changeIndex + 1 : 0] = res.data;
           return [...prevValue];
         });
       } else {
-        const id = availableAddresses[changeIndex][selectedAddresses[changeIndex].index].objectGuid;
-        props.handleChange(id);
+        props.handleChange(selectedAddresses[changeIndex].objectGuid);
       }
     });
-  }, [changeIndex, selectedAddresses[changeIndex]]);
+  }, [selectedAddresses[changeIndex]]);
+
+  useEffect(() => {
+    const id = queryAddress.index > 0 ? selectedAddresses[queryAddress.index - 1].objectId : 0;
+    getAddress(id, queryAddress.query[queryAddress.index]).then((res) => {
+      setAvailableAddresses((prevValue) => {
+        prevValue[queryAddress.index] = res.data;
+        return [...prevValue];
+      });
+    });
+  }, [queryAddress]);
+
   return (
     <div className={style.addressSelect}>
       <h1 className={style.title}>Адрес проживания</h1>
@@ -42,24 +54,20 @@ export const AddressForm = (props: AddressChoice) => {
           handleChange={(e) => {
             setChangeIndex(index);
             setSelectedAddresses((prevValue) => {
-              if (e.target.value)
-                prevValue[index] = { id: item[Number(e.target.value)].objectId, index: Number(e.target.value) };
-              else prevValue[index] = { id: 0, index: -1 };
-
+              prevValue[index] = item[Number(e.target.value)];
               return [...prevValue];
             });
           }}
-          label={
-            selectedAddresses[index] && selectedAddresses[index].index !== -1
-              ? item[selectedAddresses[index].index].objectLevelText
-              : "Следующий элемент"
-          }
-          name={
-            selectedAddresses[index] && selectedAddresses[index].index !== -1
-              ? item[selectedAddresses[index].index].objectLevel
-              : "nextAddress"
-          }
-          type="select"
+          onInputChange={(value) => {
+            setQueryAddress((prevValue) => {
+              prevValue.index = index;
+              prevValue.query[index] = value;
+              return { ...prevValue };
+            });
+          }}
+          label={selectedAddresses[index] ? selectedAddresses[index].objectLevelText : "Следующий элемент"}
+          name={selectedAddresses[index] ? selectedAddresses[index].objectLevel : "nextAddress"}
+          type="selectInput"
           options={item.map((addressItem, itemIndex) => ({
             value: itemIndex,
             name: addressItem.text,
