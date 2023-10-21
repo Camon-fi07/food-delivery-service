@@ -5,6 +5,8 @@ import { getToken } from "store/reducers/UserAsyncActions";
 import { userLogin } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
+import { loginInitValues } from "utils/consts/formsInitValues";
+import { CustomForm } from "components/customForm/CustomForm";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -15,11 +17,14 @@ export const Login = () => {
       navigate("/");
     });
   };
+
+  const initValues = loginInitValues(onSubmit);
+
   return (
     <div className={style.login}>
       {error ? <span>{error}</span> : ""}
       <h1 className={style.title}>Логин</h1>
-      <LoginForm onSubmit={onSubmit} />
+      <CustomForm<Authorization> {...initValues} />
     </div>
   );
 };
