@@ -1,11 +1,9 @@
-import { RegistrationForm } from "components/registrationForm/RegistrationForm";
 import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { getToken } from "store/reducers/UserAsyncActions";
 import { registration } from "utils/consts/apiUrls";
-import { User, UserRegisterModel } from "utils/types/User";
+import { UserRegisterModel } from "utils/types/User";
 import style from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
-import { FormInfo } from "utils/types/FormInfo";
 import { CustomForm } from "components/customForm/CustomForm";
 import { registrationInitValues } from "utils/consts/formsInitValues";
 

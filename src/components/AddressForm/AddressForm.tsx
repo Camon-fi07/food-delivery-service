@@ -37,7 +37,7 @@ export const AddressForm = (props: AddressChoice) => {
           }))}
           isError={props.isError && index === availableAddresses.length - 1}
           errorName={props.errorName}
-          defaultValue={selectedAddresses[index] ? selectedAddresses[index].text : ""}
+          defaultValueName={selectedAddresses[index] ? selectedAddresses[index].text : ""}
         />
       ))}
     </div>

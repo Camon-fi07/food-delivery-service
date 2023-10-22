@@ -34,6 +34,7 @@ export const CustomForm = <T,>(props: FormInfo<T>) => {
             errorName={errors[item.name]}
             handleChange={handleChange}
             onBlur={handleBlur}
+            defaultValueName={item.defaultName ? item.defaultName : item.defaultValue}
             {...item}
           />
         ),

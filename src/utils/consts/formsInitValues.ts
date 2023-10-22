@@ -89,6 +89,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
           { value: Gender.Male, name: "Мужской" },
           { value: Gender.Female, name: "Женский" },
         ],
+        defaultName: "Мужской",
         defaultValue: user.gender,
       },
       {
@@ -101,7 +102,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         label: "Дата рождения",
         name: "birthDate",
         type: "date",
-        defaultValue: user.birthDate,
+        defaultValue: user.birthDate.substring(0, 10),
       },
       {
         label: "Email",
