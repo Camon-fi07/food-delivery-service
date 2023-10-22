@@ -1,13 +1,18 @@
-import { useAppSelector } from "utils/hooks/redux";
+import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { useEffect, useState } from "react";
 import burgerMenuIcon from "assets/burger_menu_icon.svg.png";
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
+import { userSlice } from "store/reducers/userSlice";
+import { logout } from "utils/helpers/logout";
 export const Head = () => {
   const userInfo = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
+  const { clear } = userSlice.actions;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isVisibleMenu, setIsVisibleMenu] = useState(true);
   const [isProfileVisible, setIsProfileVisible] = useState(false);
+
   useEffect(() => {
     if (window.innerWidth < 768) setIsVisibleMenu(false);
     window.addEventListener("resize", () => {
@@ -55,7 +60,9 @@ export const Head = () => {
                   <li>
                     <button
                       onClick={() => {
-                        console.log("click");
+                        logout(userInfo.data.token, () => {
+                          dispatch(clear());
+                        });
                       }}
                     >
                       Выйти из аккаунта
