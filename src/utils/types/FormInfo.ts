@@ -10,7 +10,7 @@ export interface InputInfo {
   options?: { value: number | string; name: string }[];
   onBlur?: (e: React.FocusEvent<unknown>) => void;
   onInputChange?: (newValue: string) => void;
-  defaultValue?: string;
+  defaultValueName?: string;
 }
 
 export interface ValueInfo {
@@ -19,6 +19,7 @@ export interface ValueInfo {
   name: string;
   options?: { value: number | string; name: string }[];
   defaultValue?: string;
+  defaultName?: string;
   onInputChange?: (newValue: string) => void;
 }
 

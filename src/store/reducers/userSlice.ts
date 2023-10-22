@@ -6,12 +6,11 @@ const initialState: UserState = {
   data: {
     user: {
       id: "",
-      addressId: "",
+      address: "",
       birthDate: "",
       email: "",
       fullName: "",
       gender: "",
-      password: "",
       phoneNumber: "",
     },
     token: "",

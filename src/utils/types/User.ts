@@ -1,4 +1,4 @@
-export interface User {
+export interface UserRegisterModel {
   fullName: string;
   gender: string;
   phoneNumber: string;
@@ -8,7 +8,13 @@ export interface User {
   password: string;
 }
 
-export interface UserDto extends User {
+export interface UserDto {
+  fullName: string;
+  gender: string;
+  phoneNumber: string;
+  birthDate: string;
+  address: string;
+  email: string;
   id: string;
 }
 
@@ -25,4 +31,12 @@ export interface UserState {
 export interface Authorization {
   email: string;
   password: string;
+}
+
+export interface UserEditModel {
+  fullName: string;
+  gender: string;
+  phoneNumber: string;
+  birthDate: string;
+  addressId: string;
 }

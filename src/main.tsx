@@ -7,6 +7,7 @@ import { persistStore } from "redux-persist";
 import { Registration } from "pages/Registration/Registration.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "pages/Login/Login.tsx";
+import { Profile } from "pages/Profile/Profile.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <div>Profile</div>,
+        element: <Profile />,
       },
       {
         path: "/item/:id",

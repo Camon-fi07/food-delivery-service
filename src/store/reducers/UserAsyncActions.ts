@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { userProfile } from "utils/consts/apiUrls";
-import { Authorization, User } from "utils/types/User";
+import { Authorization, UserDto } from "utils/types/User";
 
 export const getUser = createAsyncThunk("getUser", async (token: string, thunkAPI) => {
   const config = {
@@ -20,11 +20,11 @@ export const getUser = createAsyncThunk("getUser", async (token: string, thunkAP
 
 export const getToken = createAsyncThunk(
   "getToken",
-  async (data: { path: string; value: User | Authorization }, thunkAPI) => {
+  async (data: { path: string; value: UserDto | Authorization }, thunkAPI) => {
     try {
       const response = await axios.post(data.path, data.value);
       thunkAPI.dispatch(getUser(response.data.token));
-      return response.data;
+      return response.data.token;
     } catch (err) {
       const error = err as Error;
       return thunkAPI.rejectWithValue(error.message);

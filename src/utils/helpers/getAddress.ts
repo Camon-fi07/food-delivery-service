@@ -19,3 +19,27 @@ export const getAddressChain = async (objectGuid?: string) => {
     return Promise.reject(e);
   }
 };
+
+export const getAddressOfChain = async (
+  parentObjectId: number,
+  selectedAddresses: Address[],
+  lastAddresses: Address[][],
+  indexNow: number,
+): Promise<Address[][]> => {
+  try {
+    const res = await axios.get<Address[]>(addressSearch, { params: { parentObjectId } });
+    if (res.data.length) {
+      return getAddressOfChain(
+        selectedAddresses[indexNow].objectId,
+        selectedAddresses,
+        [...lastAddresses, res.data],
+        indexNow + 1,
+      );
+    } else {
+      return lastAddresses;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
