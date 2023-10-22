@@ -50,7 +50,12 @@ export const Head = () => {
                 >
                   Профиль
                 </button>
-                <ul className={`${!isProfileVisible ? style.hidden : ""} ${style.profile}`}>
+                <ul
+                  onClick={() => {
+                    setIsProfileVisible(!isProfileVisible);
+                  }}
+                  className={`${!isProfileVisible ? style.hidden : ""} ${style.profile}`}
+                >
                   <li>
                     <Link to={"profile"}>Настройки профиля</Link>
                   </li>
