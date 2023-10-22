@@ -41,6 +41,8 @@ export const userSlice = createSlice({
     [getUser.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
+      state.data = initialState.data;
+      state.isAuth = false;
     },
     [getToken.pending.type]: (state) => {
       state.error = "";
