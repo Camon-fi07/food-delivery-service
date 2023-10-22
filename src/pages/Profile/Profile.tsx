@@ -1,11 +1,11 @@
 import { CustomForm } from "components/customForm/CustomForm";
-import style from "./style.module.scss";
 import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { UserEditModel } from "utils/types/User";
 import { profileInitValues } from "utils/consts/formsInitValues";
 import axios from "axios";
 import { userProfile } from "utils/consts/apiUrls";
 import { getUser } from "store/reducers/UserAsyncActions";
+import style from "./style.module.scss";
 
 export const Profile = () => {
   const user = useAppSelector((state) => state.userReducer);
