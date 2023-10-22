@@ -26,6 +26,7 @@ export const CustomForm = <T,>(props: FormInfo<T>) => {
             handleChange={(value) => {
               formik.setFieldValue(item.name, value);
             }}
+            objectGuid={item.defaultValue}
           />
         ) : (
           <FormValue

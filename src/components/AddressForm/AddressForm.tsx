@@ -1,10 +1,12 @@
 import { FormValue } from "components/formValue/Formvalue";
 import { AddressChoice } from "utils/types/Address";
-import style from "./style.module.scss";
 import { useAddress } from "utils/hooks/addressValues";
+import style from "./style.module.scss";
+
 export const AddressForm = (props: AddressChoice) => {
   const { availableAddresses, setChangeIndex, setSelectedAddresses, setQueryAddress, selectedAddresses } = useAddress(
     props.handleChange,
+    props.objectGuid,
   );
 
   return (
