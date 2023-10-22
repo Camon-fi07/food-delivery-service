@@ -89,7 +89,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
           { value: Gender.Male, name: "Мужской" },
           { value: Gender.Female, name: "Женский" },
         ],
-        defaultValue: user.gender === Gender.Male ? "Мужской" : "Женский",
+        defaultValue: user.gender,
       },
       {
         label: "Телефон",
@@ -113,7 +113,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         label: "Адрес",
         name: "addressId",
         type: "address",
-        defaultValue: "8e585aa8-f5dc-4ab5-b71e-10395e899d6f",
+        defaultValue: user.address,
       },
     ],
     onSubmit: onSubmit,

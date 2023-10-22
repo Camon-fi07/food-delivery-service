@@ -1,16 +1,24 @@
 import { CustomForm } from "components/customForm/CustomForm";
 import style from "./style.module.scss";
-import { useAppSelector } from "utils/hooks/redux";
+import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { UserEditModel } from "utils/types/User";
 import { profileInitValues } from "utils/consts/formsInitValues";
+import axios from "axios";
+import { userProfile } from "utils/consts/apiUrls";
+import { getUser } from "store/reducers/UserAsyncActions";
 
 export const Profile = () => {
   const user = useAppSelector((state) => state.userReducer);
+  const dispatch = useAppDispatch();
   const onSubmit = (values: UserEditModel) => {
-    console.log(values);
-    // dispatch(getToken({ path: userLogin, value: values })).then(() => {
-    //   navigate("/");
-    // });
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.data.token}`,
+      },
+    };
+    axios.put(userProfile, values, config).then(() => {
+      dispatch(getUser(user.data.token));
+    });
   };
 
   const initValues = profileInitValues(user.data.user, onSubmit);

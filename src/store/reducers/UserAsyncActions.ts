@@ -24,7 +24,7 @@ export const getToken = createAsyncThunk(
     try {
       const response = await axios.post(data.path, data.value);
       thunkAPI.dispatch(getUser(response.data.token));
-      return response.data;
+      return response.data.token;
     } catch (err) {
       const error = err as Error;
       return thunkAPI.rejectWithValue(error.message);
