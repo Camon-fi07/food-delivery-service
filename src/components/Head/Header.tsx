@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 export const Head = () => {
   const userInfo = useAppSelector((state) => state.userReducer);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisibleMenu, setIsVisibleMenu] = useState(true);
+  const [isProfileVisible, setIsProfileVisible] = useState(false);
   useEffect(() => {
-    if (window.innerWidth < 768) setIsVisible(false);
+    if (window.innerWidth < 768) setIsVisibleMenu(false);
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
-      if (window.innerWidth < 768) setIsVisible(false);
-      else setIsVisible(true);
+      if (window.innerWidth < 768) setIsVisibleMenu(false);
+      else setIsVisibleMenu(true);
     });
   }, []);
   return (
@@ -24,7 +25,7 @@ export const Head = () => {
         {windowWidth < 768 ? (
           <button
             onClick={() => {
-              setIsVisible(!isVisible);
+              setIsVisibleMenu(!isVisibleMenu);
             }}
             className={style.burger_menu}
           >
@@ -33,11 +34,34 @@ export const Head = () => {
         ) : (
           ""
         )}
-        <ul className={`${!isVisible ? style.hidden : ""} ${style.user_info}`}>
+        <ul className={`${!isVisibleMenu ? style.hidden : ""} ${style.user_info}`}>
           {userInfo.isAuth ? (
             <>
-              <li>
-                <Link to={"profile"}>Профиль</Link>
+              <li className={style.profile}>
+                <button
+                  onClick={() => {
+                    setIsProfileVisible(!isProfileVisible);
+                  }}
+                >
+                  Профиль
+                </button>
+                <ul className={`${!isProfileVisible ? style.hidden : ""} ${style.profile}`}>
+                  <li>
+                    <Link to={"profile"}>Настройки профиля</Link>
+                  </li>
+                  <li>
+                    <Link to={"orders"}>Заказы</Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => {
+                        console.log("click");
+                      }}
+                    >
+                      Выйти из аккаунта
+                    </button>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link to={"cart"}>Корзина</Link>
