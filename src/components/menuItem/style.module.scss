@@ -44,16 +44,26 @@
 }
 
 .buy_menu {
-  color: $text;
-  justify-self: end;
+  display: flex;
+  justify-content: center;
   & button {
+    padding: 3px 0;
     background-color: $btnBackground;
+    text-align: center;
     width: 100%;
     color: $text;
-    display: flex;
-    justify-content: center;
     font-size: 26px;
-    padding: 5px 0;
+  }
+  & * {
     border-radius: 5px;
   }
+}
+
+.change_menu {
+  background-color: $btnBackground;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
 }

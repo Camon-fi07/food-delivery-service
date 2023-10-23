@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
-import { getToken } from "store/reducers/UserAsyncActions";
+import { getToken } from "store/reducers/user/UserAsyncActions";
 import { registration } from "utils/consts/apiUrls";
 import { UserRegisterModel } from "utils/types/User";
 import style from "./style.module.scss";

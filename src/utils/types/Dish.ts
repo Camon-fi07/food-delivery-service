@@ -1,3 +1,4 @@
+import { DishBasketDto } from "utils/types/Dish";
 export enum DishCategory {
   Wok = "Wok",
   Pizza = "Pizza",
@@ -42,4 +43,10 @@ export interface DishPagedListDto {
     count: number;
     current: number;
   };
+}
+
+export interface CartState {
+  dishes: DishBasketDto[];
+  isLoading: boolean;
+  error: string;
 }

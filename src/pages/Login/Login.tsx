@@ -1,6 +1,6 @@
 import { Authorization } from "utils/types/User";
 import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
-import { getToken } from "store/reducers/UserAsyncActions";
+import { getToken } from "store/reducers/user/UserAsyncActions";
 import { userLogin } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
