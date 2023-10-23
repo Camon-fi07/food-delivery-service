@@ -4,7 +4,7 @@ import { UserEditModel } from "utils/types/User";
 import { profileInitValues } from "utils/consts/formsInitValues";
 import axios from "axios";
 import { userProfile } from "utils/consts/apiUrls";
-import { getUser } from "store/reducers/UserAsyncActions";
+import { getUser } from "store/reducers/user/UserAsyncActions";
 import style from "./style.module.scss";
 
 export const Profile = () => {
