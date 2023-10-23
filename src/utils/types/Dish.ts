@@ -1,4 +1,3 @@
-import { DishBasketDto } from "utils/types/Dish";
 export enum DishCategory {
   Wok = "Wok",
   Pizza = "Pizza",

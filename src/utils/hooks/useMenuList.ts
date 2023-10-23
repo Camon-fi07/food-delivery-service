@@ -5,6 +5,12 @@ import { useSearchParams } from "react-router-dom";
 import { dish } from "utils/consts/apiUrls";
 
 export const useMenuList = () => {
+  const values = {
+    page: 1,
+    sorting: "",
+    vegetarian: false,
+    categories: [],
+  };
   const [params, setParams] = useSearchParams();
   const [menu, setMenu] = useState<DishPagedListDto>();
 
