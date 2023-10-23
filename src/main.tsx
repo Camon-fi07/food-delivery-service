@@ -8,6 +8,7 @@ import { Registration } from "pages/Registration/Registration.tsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "pages/Login/Login.tsx";
 import { Profile } from "pages/Profile/Profile.tsx";
+import { Menu } from "pages/Menu/Menu.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Menu</div>,
+        element: <Menu />,
       },
       {
         path: "/registration",
