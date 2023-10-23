@@ -1,52 +1,29 @@
-import { DishDto } from "utils/types/Dish";
+import { MenuItemInfo } from "utils/types/MenuItemInfo";
 import style from "./style.module.scss";
-import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
-import { addDish, deleteDish } from "utils/helpers/changeDishCount";
-import { getCart } from "store/reducers/cart/cartAsyncActions";
-import { getCountOfDish } from "utils/helpers/getCoundOfDish";
-import { date } from "yup";
 
-export const MenuItem = (props: DishDto) => {
-  const user = useAppSelector((state) => state.userReducer);
-  const cart = useAppSelector((state) => state.cartReducer);
-  const amount = getCountOfDish(cart.dishes, props.id);
-  const dispatch = useAppDispatch();
+export const MenuItem = (props: MenuItemInfo) => {
   return (
     <article className={style.menu_item}>
       <div className={style.image}>
-        <img src={props.image} />
+        <img src={props.dish.image} />
       </div>
-      <h2 className={style.title}>{props.name}</h2>
+      <h2 className={style.title}>{props.dish.name}</h2>
       <p className={style.categories}>
-        <span>Категория блюда</span> - {props.category}
+        <span>Категория блюда</span> - {props.dish.category}
       </p>
-      <p className={style.rating}>{props.rating}</p>
-      <p className={style.description}>{props.description}</p>
-      <p className={style.cost}>{props.price} ₽</p>
+      <p className={style.rating}>{props.dish.rating}</p>
+      <p className={style.description}>{props.dish.description}</p>
+      <p className={style.cost}>{props.dish.price} ₽</p>
       <div className={style.buy_menu}>
-        {user.isAuth ? (
-          amount ? (
+        {props.isUserAuth ? (
+          props.amount ? (
             <div className={style.change_menu}>
-              <button onClick={() => deleteDish(user.data.token, props.id, () => dispatch(getCart(user.data.token)))}>
-                -
-              </button>
-              <span>{amount}</span>
-              <button
-                onClick={() => {
-                  addDish(user.data.token, props.id, () => dispatch(getCart(user.data.token)));
-                }}
-              >
-                +
-              </button>
+              <button onClick={props.delete}>-</button>
+              <span>{props.amount}</span>
+              <button onClick={props.add}>+</button>
             </div>
           ) : (
-            <button
-              onClick={() => {
-                addDish(user.data.token, props.id, () => dispatch(getCart(user.data.token)));
-              }}
-            >
-              Купить
-            </button>
+            <button onClick={props.add}>Купить</button>
           )
         ) : (
           <span>Необходимо авторизоваться</span>
