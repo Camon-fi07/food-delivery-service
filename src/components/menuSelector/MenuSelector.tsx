@@ -3,11 +3,12 @@ import { DishCategory, DishSorting } from "utils/types/Dish";
 import style from "./style.module.scss";
 import arrowUp from "assets/arrowUp.svg";
 import arrowDown from "assets/arrowDown.svg";
+import { MenuSelectorInfo } from "utils/types/MenuSelectorInfo";
 
-export const MenuSelector = () => {
+export const MenuSelector = (props: MenuSelectorInfo) => {
   const [isCategories, setIsCategories] = useState(false);
   const [isSorting, setIsSorting] = useState(false);
-  const [isVegeterian, setIsVegeterian] = useState(false);
+  const [isVegetarian, setIsVegetarian] = useState(false);
   return (
     <div className={style.menu_selector}>
       <div className={`${style.parameter} ${style.categories}`}>
@@ -23,7 +24,12 @@ export const MenuSelector = () => {
           <ul>
             {Object.keys(DishCategory).map((key) => (
               <li>
-                <input onChange={(e) => console.log(e.target.value)} type="checkbox" name="category" value={key} />
+                <input
+                  onChange={(e) => props.toggleCategory(e.target.value)}
+                  type="checkbox"
+                  name="category"
+                  value={key}
+                />
                 <label htmlFor="category">{DishCategory[key as keyof typeof DishCategory]}</label>
               </li>
             ))}
@@ -36,8 +42,13 @@ export const MenuSelector = () => {
         <input
           type="checkbox"
           name="category"
-          onClick={() => setIsVegeterian(!isVegeterian)}
-          value={String(isVegeterian)}
+          onClick={() => {
+            setIsVegetarian(!isVegetarian);
+          }}
+          onChange={() => {
+            props.setVegetarian(String(!isVegetarian));
+          }}
+          value={String(isVegetarian)}
         />
         <label htmlFor="category">Показать только вегетерианские</label>
       </div>
@@ -54,7 +65,14 @@ export const MenuSelector = () => {
           <ul>
             {Object.keys(DishSorting).map((key) => (
               <li>
-                <input type="radio" name="sorting" value={key} />
+                <input
+                  onChange={(e) => {
+                    props.setSorting(e.target.value);
+                  }}
+                  type="radio"
+                  name="sorting"
+                  value={key}
+                />
                 <label htmlFor="sorting">{DishSorting[key as keyof typeof DishSorting]}</label>
               </li>
             ))}

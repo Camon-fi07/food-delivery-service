@@ -4,15 +4,19 @@ import { useMenuList } from "utils/hooks/useMenuList";
 import { MenuSelector } from "components/menuSelector/MenuSelector";
 
 export const Menu = () => {
-  const { menu, setParamsByName, params } = useMenuList();
+  const { menu, setParamsByName, params, nextPage, previousPage } = useMenuList();
   return (
     <div className={style.menu}>
-      <MenuSelector />
+      <MenuSelector
+        toggleCategory={(value) => setParamsByName("categories", value)}
+        setSorting={(value) => setParamsByName("sorting", value)}
+        setVegetarian={(value) => setParamsByName("vegetarian", value)}
+      />
       {menu ? <MenuList dishes={menu.dishes} /> : ""}
       <div className={style.page_change}>
-        <button>☚</button>
+        <button onClick={() => previousPage()}>☚</button>
         <span>{params.get("page") || 1}</span>
-        <button>☛</button>
+        <button onClick={() => nextPage()}>☛</button>
       </div>
     </div>
   );

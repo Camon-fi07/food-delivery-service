@@ -10,25 +10,39 @@ export const useMenuList = () => {
   const [params, setParams] = useSearchParams();
   const [menu, setMenu] = useState<DishPagedListDto>();
 
+  const nextPage = () => {
+    setParamsByName("page", String(Number(params.get("page") || "1") + 1));
+  };
+
+  const previousPage = () => {
+    setParamsByName("page", String(Number(params.get("page")!) - 1));
+  };
+
   const setParamsByName = (name: string, value: string) => {
-    if (name === "categories") params.set(name, [...params.getAll(name), value].toString());
-    else params.set(name, value);
+    if (name === "categories") {
+      const categories = params.getAll(name);
+      if (categories.includes(value)) {
+        categories.filter((item) => {
+          item !== value;
+        });
+      } else categories.push(value);
+      params.set(name, String(categories));
+    } else params.set(name, value);
     setParams(params);
   };
 
   useEffect(() => {
-    params.set("page", "1");
-    setParams(params);
     const configParams = {
       vegetarian: params.get("vegetarian"),
       sorting: params.get("sorting"),
-      page: params.get("pages"),
+      page: params.get("page"),
     };
-    const categories = params.getAll("categories");
+    const categories = params.get("categories")?.split(",");
     let categoriesQueryString = "";
     categories.forEach((item) => {
       categoriesQueryString += `categories=${item}&`;
     });
+    console.log(categoriesQueryString, categories);
     axios
       .get<DishPagedListDto>(`${dish}/?${categoriesQueryString}`, { params: configParams })
       .then((res) => {
@@ -39,10 +53,10 @@ export const useMenuList = () => {
         if (values.page) params.set("page", values.page);
         if (values.vegetarian) params.set("vegetarian", values.vegetarian);
         if (values.sorting) params.set("sorting", values.sorting);
-        if (values.categories) params.set("categories", String(values.categories));
+        if (values.categories?.length) params.set("categories", String(values.categories));
         setParams(params);
       });
   }, [params]);
 
-  return { menu, params, setParamsByName };
+  return { menu, params, setParamsByName, nextPage, previousPage };
 };
