@@ -21,7 +21,6 @@ export const useMenuList = () => {
   const setParamsByName = (name: string, value: string) => {
     if (name === "categories") {
       let categories = params.get(name)?.split(",") || [];
-      console.log(categories, value);
       if (categories.includes(value)) {
         categories = categories.filter((item) => item !== value);
       } else categories.push(value);
@@ -42,7 +41,6 @@ export const useMenuList = () => {
     const categories = params.get("categories")?.split(",");
     let categoriesQueryString = "";
     if (categories) {
-      console.log(categories);
       categories.forEach((item) => {
         categoriesQueryString += `categories=${item}&`;
       });
