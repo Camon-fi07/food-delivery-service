@@ -1,25 +1,29 @@
 import { useState } from "react";
-import style from "./style.module.scss";
 import { DishCategory, DishSorting } from "utils/types/Dish";
+import style from "./style.module.scss";
+import arrowUp from "assets/arrowUp.svg";
+import arrowDown from "assets/arrowDown.svg";
 
 export const MenuSelector = () => {
   const [isCategories, setIsCategories] = useState(false);
   const [isSorting, setIsSorting] = useState(false);
+  const [isVegeterian, setIsVegeterian] = useState(false);
   return (
     <div className={style.menu_selector}>
-      <div className={style.categories}>
+      <div className={`${style.parameter} ${style.categories}`}>
         <button
           onClick={() => {
             setIsCategories(!isCategories);
           }}
         >
-          Категории
+          <span>Категории</span>
+          <img src={isCategories ? arrowDown : arrowUp} />
         </button>
         {isCategories ? (
           <ul>
             {Object.keys(DishCategory).map((key) => (
               <li>
-                <input type="checkbox" name="category" value={key} />
+                <input onChange={(e) => console.log(e.target.value)} type="checkbox" name="category" value={key} />
                 <label htmlFor="category">{DishCategory[key as keyof typeof DishCategory]}</label>
               </li>
             ))}
@@ -28,11 +32,37 @@ export const MenuSelector = () => {
           ""
         )}
       </div>
-      <select onChange={(e) => console.log(e.target.value)}>
-        {Object.keys(DishSorting).map((key) => (
-          <option>{key as keyof typeof DishSorting}</option>
-        ))}
-      </select>
+      <div className={`${style.vegeterian} ${style.parameter}`}>
+        <input
+          type="checkbox"
+          name="category"
+          onClick={() => setIsVegeterian(!isVegeterian)}
+          value={String(isVegeterian)}
+        />
+        <label htmlFor="category">Показать только вегетерианские</label>
+      </div>
+      <div className={`${style.parameter} ${style.sorting}`}>
+        <button
+          onClick={() => {
+            setIsSorting(!isSorting);
+          }}
+        >
+          <span>Сортировка</span>
+          <img src={isSorting ? arrowDown : arrowUp} />
+        </button>
+        {isSorting ? (
+          <ul>
+            {Object.keys(DishSorting).map((key) => (
+              <li>
+                <input type="radio" name="sorting" value={key} />
+                <label htmlFor="sorting">{DishSorting[key as keyof typeof DishSorting]}</label>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
