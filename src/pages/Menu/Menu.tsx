@@ -11,6 +11,9 @@ export const Menu = () => {
         toggleCategory={(value) => setParamsByName("categories", value)}
         setSorting={(value) => setParamsByName("sorting", value)}
         setVegetarian={(value) => setParamsByName("vegetarian", value)}
+        sorting={params.get("sorting") || ""}
+        categories={params.get("categories")?.split(",") || []}
+        vegetarian={(params.get("vegetarian") || "false") == "true"}
       />
       {menu ? <MenuList dishes={menu.dishes} /> : ""}
       <div className={style.page_change}>

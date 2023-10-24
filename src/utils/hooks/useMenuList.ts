@@ -20,14 +20,16 @@ export const useMenuList = () => {
 
   const setParamsByName = (name: string, value: string) => {
     if (name === "categories") {
-      const categories = params.getAll(name);
+      let categories = params.get(name)?.split(",") || [];
+      console.log(categories, value);
       if (categories.includes(value)) {
-        categories.filter((item) => {
-          item !== value;
-        });
+        categories = categories.filter((item) => item !== value);
       } else categories.push(value);
-      params.set(name, String(categories));
-    } else params.set(name, value);
+      if (categories.length) params.set(name, String(categories));
+      else params.delete(name);
+    } else {
+      params.set(name, value);
+    }
     setParams(params);
   };
 
@@ -39,15 +41,17 @@ export const useMenuList = () => {
     };
     const categories = params.get("categories")?.split(",");
     let categoriesQueryString = "";
-    categories.forEach((item) => {
-      categoriesQueryString += `categories=${item}&`;
-    });
-    console.log(categoriesQueryString, categories);
+    if (categories) {
+      console.log(categories);
+      categories.forEach((item) => {
+        categoriesQueryString += `categories=${item}&`;
+      });
+    }
     axios
       .get<DishPagedListDto>(`${dish}/?${categoriesQueryString}`, { params: configParams })
       .then((res) => {
         setMenu(res.data);
-        setValues({ categories: categories, ...configParams });
+        setValues({ categories: categories || null, ...configParams });
       })
       .catch((e) => {
         if (values.page) params.set("page", values.page);

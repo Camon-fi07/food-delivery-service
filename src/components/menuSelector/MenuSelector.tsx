@@ -25,6 +25,7 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
             {Object.keys(DishCategory).map((key) => (
               <li>
                 <input
+                  checked={props.categories.includes(key)}
                   onChange={(e) => props.toggleCategory(e.target.value)}
                   type="checkbox"
                   name="category"
@@ -42,6 +43,7 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
         <input
           type="checkbox"
           name="category"
+          checked={props.vegetarian}
           onClick={() => {
             setIsVegetarian(!isVegetarian);
           }}
@@ -66,6 +68,7 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
             {Object.keys(DishSorting).map((key) => (
               <li>
                 <input
+                  checked={props.sorting.includes(key)}
                   onChange={(e) => {
                     props.setSorting(e.target.value);
                   }}
