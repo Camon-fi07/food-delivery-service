@@ -1,0 +1,73 @@
+@import "App/styles/colors.scss";
+
+.dish {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+  gap: 10px;
+  & * {
+    font-size: 24px;
+  }
+}
+
+.image {
+  padding-top: 266/407 * 80%;
+  position: relative;
+  & img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.categories {
+  color: $subTitle;
+}
+
+.rating {
+  margin-bottom: 10px;
+}
+
+.description {
+  margin-bottom: 10px;
+}
+
+.cost {
+  margin-top: auto;
+  text-align: center;
+  font-size: 32px;
+}
+
+.buy_menu {
+  display: flex;
+  justify-content: center;
+  & button {
+    padding: 3px 0;
+    background-color: $btnBackground;
+    text-align: center;
+    width: 100%;
+    color: $text;
+    font-size: 26px;
+  }
+  & * {
+    border-radius: 5px;
+  }
+}
+
+.change_menu {
+  background-color: $btnBackground;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
