@@ -1,0 +1,47 @@
+@import "App/styles/colors.scss";
+.menu_selector {
+  display: flex;
+  justify-content: space-around;
+}
+
+.parameter {
+  position: relative;
+  & button {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid $fieldBorder;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  & * {
+    color: $text;
+    font-size: 26px;
+  }
+  & ul {
+    border: 2px solid $fieldBorder;
+    background-color: $background;
+    position: absolute;
+    z-index: 2;
+    top: 100%;
+    left: -10%;
+    min-width: 120%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    & li {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+}
+.vegeterian {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
