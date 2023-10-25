@@ -1,0 +1,59 @@
+@import "App/styles/colors.scss";
+
+.dish {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  gap: 10px;
+  & * {
+    font-size: 24px;
+  }
+}
+
+.image {
+  padding-top: 266/407 * 100%;
+  position: relative;
+  & img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.categories {
+  color: $subTitle;
+}
+
+.rating {
+  margin-bottom: 10px;
+}
+
+.description {
+  margin-bottom: 10px;
+}
+
+.cost {
+  text-align: center;
+  font-size: 32px;
+}
+
+@media (min-width: 768px) {
+  .dish {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .image {
+    padding-top: 266/407 * 80%;
+  }
+}

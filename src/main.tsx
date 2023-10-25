@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Login } from "pages/Login/Login.tsx";
 import { Profile } from "pages/Profile/Profile.tsx";
 import { Menu } from "pages/Menu/Menu.tsx";
+import { Dish } from "pages/Dish/Dish.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/item/:id",
-        element: <div>Item</div>,
+        element: <Dish />,
       },
       {
         path: "/cart",
