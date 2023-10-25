@@ -1,12 +1,13 @@
 import { MenuItemInfo } from "utils/types/MenuItemInfo";
 import style from "./style.module.scss";
 import { Link } from "react-router-dom";
-
+import leaf from "assets/leaf.png";
 export const MenuItem = (props: MenuItemInfo) => {
   return (
     <article className={style.menu_item}>
       <Link to={`item/${props.dish.id}`}>
         <div className={style.image}>
+          {props.dish.vegetarian ? <img className={style.leaf} src={leaf} /> : ""}
           <img src={props.dish.image} />
         </div>
       </Link>
