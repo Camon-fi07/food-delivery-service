@@ -1,11 +1,14 @@
 import { useDish } from "utils/hooks/getDish";
 import style from "./style.module.scss";
 import { useParams } from "react-router-dom";
+import { Rating } from "components/rating/Rating";
+import { useAppSelector } from "utils/hooks/redux";
 
 export const Dish = () => {
   const { id } = useParams();
+  const { token } = useAppSelector((state) => state.userReducer).data;
+  const { dish, error, canChange } = useDish(id!, token);
 
-  const { dish, error } = useDish(id!);
   if (error) return <span>{error}</span>;
   return (
     <div className={style.dish}>
@@ -21,6 +24,7 @@ export const Dish = () => {
         <span>Описание: </span>
         {dish.description}
       </p>
+      <Rating id={id!} canChange={canChange} rating={0} onCLick={(value) => console.log(value)} />
       <p className={style.cost}>Цена: {dish.price}₽</p>
     </div>
   );
