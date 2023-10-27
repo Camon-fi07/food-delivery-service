@@ -16,7 +16,6 @@ export const Rating = (props: RatingInfo) => {
       for (; i < props.rating - 1; i++) {
         percents[i] = 1;
       }
-      console.log(i, props.rating);
       percents[i] = i !== props.rating ? 1 - (i + 1 - props.rating) : 0;
     }
     if (props.canChange) {

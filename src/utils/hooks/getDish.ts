@@ -21,7 +21,7 @@ export const useDish = (id: string, token: string) => {
     axios.get<boolean>(checkRating(id), config).then((res) => {
       setCanChange(res.data);
     });
-  }, []);
+  }, [canChange]);
 
   return { ...dishState, canChange, setCanChange };
 };

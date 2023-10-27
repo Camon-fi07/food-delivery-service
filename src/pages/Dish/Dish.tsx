@@ -27,7 +27,7 @@ export const Dish = () => {
         {dish.description}
       </p>
       {canChange ? (
-        <>
+        <div className={style.dish_rating}>
           <p>Оставьте свой отзыв</p>
           <Rating
             canChange={canChange}
@@ -38,7 +38,7 @@ export const Dish = () => {
               });
             }}
           />
-        </>
+        </div>
       ) : (
         ""
       )}

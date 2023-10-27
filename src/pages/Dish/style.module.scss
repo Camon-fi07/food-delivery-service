@@ -46,6 +46,13 @@
   font-size: 32px;
 }
 
+.dish_rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 @media (min-width: 768px) {
   .dish {
     width: 60%;
