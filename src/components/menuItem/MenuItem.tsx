@@ -19,8 +19,7 @@ export const MenuItem = (props: MenuItemInfo) => {
       <p className={style.categories}>
         <span>Категория блюда</span> - {props.dish.category}
       </p>
-      <Rating id={props.dish.id} rating={props.dish.rating} canChange={false} />
-      {/* <p className={style.rating}>{props.dish.rating}</p> */}
+      <Rating rating={props.dish.rating} canChange={false} />
       <p className={style.description}>{props.dish.description}</p>
       <p className={style.cost}>{props.dish.price} ₽</p>
       <div className={style.buy_menu}>

@@ -6,6 +6,7 @@ import { DishDto } from "utils/types/Dish";
 export const useDish = (id: string, token: string) => {
   const [dishState, setDishState] = useState<{ dish: DishDto; error: string }>({ dish: {} as DishDto, error: "" });
   const [canChange, setCanChange] = useState(false);
+
   useEffect(() => {
     axios
       .get<DishDto>(specificDish(id))
@@ -22,5 +23,5 @@ export const useDish = (id: string, token: string) => {
     });
   }, []);
 
-  return { ...dishState, canChange };
+  return { ...dishState, canChange, setCanChange };
 };

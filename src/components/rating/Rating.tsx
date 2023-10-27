@@ -8,14 +8,16 @@ import { RatingInfo } from "utils/types/RatingInfo";
 export const Rating = (props: RatingInfo) => {
   const [percentRatings, setPercentRatins] = useState<number[]>([]);
   const [hoverElement, setHoverElement] = useState(-1);
+
   useEffect(() => {
     const percents: number[] = Array(10).fill(0);
     if (props.rating && !props.canChange) {
       let i = 0;
-      for (; i < props.rating; i++) {
+      for (; i < props.rating - 1; i++) {
         percents[i] = 1;
       }
-      percents[i] = i !== props.rating ? 1 - (i - props.rating) : 0;
+      console.log(i, props.rating);
+      percents[i] = i !== props.rating ? 1 - (i + 1 - props.rating) : 0;
     }
     if (props.canChange) {
       for (let i = 0; i <= hoverElement; i++) {
@@ -23,7 +25,7 @@ export const Rating = (props: RatingInfo) => {
       }
     }
     setPercentRatins(percents);
-  }, [hoverElement]);
+  }, [hoverElement, props]);
 
   return (
     <div className={style.rating}>
@@ -33,10 +35,10 @@ export const Rating = (props: RatingInfo) => {
             if (props.onCLick) props.onCLick(index + 1);
           }}
           onMouseEnter={() => {
-            setHoverElement(index);
+            if (props.canChange) setHoverElement(index);
           }}
           onMouseLeave={() => {
-            setHoverElement(-1);
+            if (props.canChange) setHoverElement(-1);
           }}
           className={style.star}
         >
