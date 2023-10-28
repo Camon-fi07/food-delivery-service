@@ -10,6 +10,7 @@ import { Login } from "pages/Login/Login.tsx";
 import { Profile } from "pages/Profile/Profile.tsx";
 import { Menu } from "pages/Menu/Menu.tsx";
 import { Dish } from "pages/Dish/Dish.tsx";
+import { Cart } from "pages/Cart/Cart.tsx";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <div>Cart</div>,
+        element: <Cart />,
       },
       {
         path: "/purchase",

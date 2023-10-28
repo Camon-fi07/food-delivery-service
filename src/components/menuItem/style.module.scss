@@ -60,17 +60,6 @@
     width: 100%;
     color: $text;
     font-size: 26px;
-  }
-  & * {
     border-radius: 5px;
   }
-}
-
-.change_menu {
-  background-color: $btnBackground;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
 }

@@ -1,0 +1,10 @@
+@import "App/styles/colors.scss";
+
+.dishes_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & li {
+    border: 2px solid $fieldBorder;
+  }
+}
