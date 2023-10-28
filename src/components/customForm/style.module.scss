@@ -11,11 +11,17 @@
 .button {
   font-weight: 500;
   height: 40px;
-  width: 250px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: $text;
   font-size: 24px;
   background-color: $btnBackground;
+}
+
+@media (min-width: 379px) {
+  .button {
+    width: 250px;
+  }
 }
