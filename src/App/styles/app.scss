@@ -4,10 +4,10 @@
   background-color: $background;
   min-height: 100%;
   color: $text;
-  display: grid;
-  grid-template-rows: 5fr 95fr;
   padding-bottom: 10px;
   position: relative;
+  display: grid;
+  grid-template-rows: 50px 1fr;
 }
 
 label {
