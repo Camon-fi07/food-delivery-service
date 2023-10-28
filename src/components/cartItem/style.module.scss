@@ -1,18 +1,57 @@
+@import "App/styles/colors.scss";
+
 .cart_item {
+  border: 2px solid $fieldBorder;
+  padding: 10px;
   display: grid;
+  align-items: center;
+  height: 100%;
   grid-template-rows: 1fr;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 20px 250px 1fr 1fr 1fr;
+  gap: 10px;
 }
 
 .image {
   width: 100%;
   padding-top: 266/407 * 100%;
   position: relative;
+  border-radius: 20%;
+  overflow: hidden;
   & img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
   }
+}
+.index {
+  align-self: self-start;
+  font-size: 22px;
+  text-align: center;
+}
+
+.cost {
+  font-size: 22px;
+  color: $subTitle;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 26px;
+}
+
+.delete_btn {
+  background-color: $error;
+  color: $text;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+  margin-left: auto;
 }

@@ -1,10 +1,6 @@
-@import "App/styles/colors.scss";
-
 .dishes_list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 200px);
+  grid-template-columns: 1fr;
   gap: 10px;
-  & li {
-    border: 2px solid $fieldBorder;
-  }
 }
