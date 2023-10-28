@@ -2,6 +2,8 @@
 .menu_selector {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .parameter {
@@ -44,4 +46,15 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  & label {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 379px) {
+  .vegeterian {
+    & label {
+      font-size: 26px;
+    }
+  }
 }
