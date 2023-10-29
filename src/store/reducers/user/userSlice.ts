@@ -27,6 +27,9 @@ export const userSlice = createSlice({
     clear: () => {
       return Object.assign(initialState);
     },
+    deleteError: (state) => {
+      state.error = "";
+    },
   },
   extraReducers: {
     [getUser.pending.type]: (state) => {
