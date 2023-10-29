@@ -3,6 +3,7 @@
 .panel {
   background-color: $btnBackground;
   border-radius: 5px;
+  overflow: hidden;
   width: 50%;
   display: flex;
   justify-content: center;
