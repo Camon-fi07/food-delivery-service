@@ -1,0 +1,22 @@
+@import "App/styles/colors.scss";
+
+.panel {
+  background-color: $btnBackground;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & button {
+    padding: 3px 0;
+    background-color: $btnBackground;
+    text-align: center;
+    width: 100%;
+    font-size: 26px;
+    color: $text;
+  }
+  & span {
+    font-size: 22px;
+  }
+}

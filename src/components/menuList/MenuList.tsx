@@ -21,11 +21,6 @@ export const MenuList = ({ dishes }: { dishes: DishDto[] }) => {
               dispatch(getCart(user.data.token));
             });
           }}
-          delete={() => {
-            deleteDish(user.data.token, dish.id, () => {
-              dispatch(getCart(user.data.token));
-            });
-          }}
           amount={getCountOfDish(cart.dishes, dish.id)}
           isUserAuth={user.isAuth}
         />

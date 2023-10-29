@@ -3,6 +3,7 @@ import style from "./style.module.scss";
 import { Link } from "react-router-dom";
 import leaf from "assets/leaf.png";
 import { Rating } from "components/rating/Rating";
+import { DishCountPanel } from "components/dishCountPanel/DIshCountPanel";
 export const MenuItem = (props: MenuItemInfo) => {
   return (
     <article className={style.menu_item}>
@@ -15,7 +16,6 @@ export const MenuItem = (props: MenuItemInfo) => {
       <Link to={`item/${props.dish.id}`}>
         <h2 className={style.title}>{props.dish.name}</h2>
       </Link>
-
       <p className={style.categories}>
         <span>Категория блюда</span> - {props.dish.category}
       </p>
@@ -25,11 +25,7 @@ export const MenuItem = (props: MenuItemInfo) => {
       <div className={style.buy_menu}>
         {props.isUserAuth ? (
           props.amount ? (
-            <div className={style.change_menu}>
-              <button onClick={props.delete}>-</button>
-              <span>{props.amount}</span>
-              <button onClick={props.add}>+</button>
-            </div>
+            <DishCountPanel dishId={props.dish.id} />
           ) : (
             <button onClick={props.add}>Купить</button>
           )

@@ -5,5 +5,4 @@ export interface MenuItemInfo {
   amount: number;
   isUserAuth: boolean;
   add: () => void;
-  delete: () => void;
 }
