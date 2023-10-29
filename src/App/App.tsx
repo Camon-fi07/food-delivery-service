@@ -12,12 +12,14 @@ const App = () => {
   const { deleteError } = userSlice.actions;
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getUser("fw")).then((res) => {
-      if (user.error) dispatch(deleteError());
-      if (res.type === "getUser/fulfilled") {
-        dispatch(getCart(user.data.token));
-      }
-    });
+    if (user.isAuth) {
+      dispatch(getUser(user.data.token)).then((res) => {
+        if (user.error) dispatch(deleteError());
+        if (res.type === "getUser/fulfilled") {
+          dispatch(getCart(user.data.token));
+        }
+      });
+    }
   }, []);
 
   return (
