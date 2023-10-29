@@ -20,8 +20,9 @@ export const Login = () => {
   };
 
   useEffect(() => {
+    toast.dismiss("loading");
     if (error) toast.error(error, { theme: "dark", autoClose: 1500 });
-    else if (isLoading) toast.warning(isLoading, { theme: "dark", autoClose: 1500 });
+    else if (isLoading) toast.warning("Подожите", { theme: "dark", autoClose: 1500, toastId: "loading" });
   }, [error, isLoading]);
 
   const initValues = loginInitValues(onSubmit);
