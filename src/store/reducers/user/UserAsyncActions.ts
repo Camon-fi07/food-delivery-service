@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { userProfile } from "utils/consts/apiUrls";
 import { Authorization, UserDto } from "utils/types/User";
+import { getCart } from "../cart/cartAsyncActions";
 
 export const getUser = createAsyncThunk("getUser", async (token: string, thunkAPI) => {
   const config = {
@@ -11,6 +12,7 @@ export const getUser = createAsyncThunk("getUser", async (token: string, thunkAP
   };
   try {
     const response = await axios.get(userProfile, config);
+    thunkAPI.dispatch(getCart(token));
     return response.data;
   } catch (err) {
     const error = err as Error;

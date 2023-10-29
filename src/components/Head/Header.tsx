@@ -7,6 +7,7 @@ import { userSlice } from "store/reducers/user/userSlice";
 import { logout } from "utils/helpers/logout";
 export const Head = () => {
   const userInfo = useAppSelector((state) => state.userReducer);
+  const cart = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const { clear } = userSlice.actions;
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -76,7 +77,7 @@ export const Head = () => {
                 </ul>
               </li>
               <li>
-                <Link to={"cart"}>Корзина</Link>
+                <Link to={"cart"}>Корзина{cart.dishes.length ? `(${cart.dishes.length})` : ""}</Link>
               </li>
             </>
           ) : (
