@@ -11,3 +11,30 @@
   font-size: 32px;
   font-weight: 600;
 }
+
+.purchase_alert {
+  width: 100%;
+  border: 2px solid $fieldBorder;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  & * {
+    text-align: center;
+    font-size: 26px;
+  }
+}
+
+.link {
+  padding: 10px;
+  font-weight: 600;
+  background-color: $success;
+}
+
+@media (min-width: 768px) {
+  .purchase_alert {
+    flex-direction: row;
+  }
+}
