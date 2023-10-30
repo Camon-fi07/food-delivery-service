@@ -1,5 +1,12 @@
 import { DishBasketDto } from "./Dish";
 
+export interface OrderDTo {
+  phone: string;
+  addressId: string;
+  deliveryTime: string;
+  email: string;
+}
+
 export interface CartState {
   dishes: DishBasketDto[];
   isLoading: boolean;

@@ -1,6 +1,7 @@
 export const root = "https://food-delivery.kreosoft.ru/api";
 const address = `${root}/address`;
 const users = `${root}/account`;
+export const order = `${root}/order`;
 export const basket = `${root}/basket`;
 export const basketDish = (id: string) => `${basket}/dish/${id}`;
 export const dish = `${root}/dish`;

@@ -1,24 +1,15 @@
 import { Form, Formik } from "formik";
 import { FormValue } from "components/formValue/Formvalue";
 import { purchaseValidateScheme } from "utils/consts/validation";
-import { useAppSelector } from "utils/hooks/redux";
 import { AddressForm } from "components/AddressForm/AddressForm";
-import style from "./style.module.scss";
 import { DishesList } from "components/dishesList/DishesList";
 import { getTotalPrice } from "utils/helpers/getTotalPrice";
 import { PurchaseFormInfo } from "utils/types/FormInfo";
+import style from "./style.module.scss";
 
 export const PurchaseForm = (props: PurchaseFormInfo) => {
-  const {
-    data: { user },
-  } = useAppSelector((state) => state.userReducer);
-
   return (
-    <Formik
-      initialValues={{ email: user.email, deliveryTime: "", phone: user.phoneNumber, addressId: user.address }}
-      validationSchema={purchaseValidateScheme}
-      onSubmit={props.onSubmit}
-    >
+    <Formik initialValues={props.initialValues} validationSchema={purchaseValidateScheme} onSubmit={props.onSubmit}>
       {({ errors, touched, handleChange, handleBlur, values, setFieldValue }) => (
         <Form className={style.form}>
           <div className={style.user_data}>
