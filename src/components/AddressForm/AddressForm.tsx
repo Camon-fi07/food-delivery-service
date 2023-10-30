@@ -11,7 +11,7 @@ export const AddressForm = (props: AddressChoice) => {
 
   return (
     <div className={style.addressSelect}>
-      <h1 className={style.title}>Адрес проживания</h1>
+      <h1 className={style.title}>{props.label}</h1>
       {availableAddresses.map((item, index) => (
         <FormValue
           handleChange={(e) => {
