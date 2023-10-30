@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { DishBasketDto, CartState } from "utils/types/Dish";
+import { DishBasketDto } from "utils/types/Dish";
+import { CartState } from "utils/types/CartInfo";
 import { getCart } from "./cartAsyncActions";
 
 const initialState: CartState = {

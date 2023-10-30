@@ -31,4 +31,5 @@ export interface AddressChoice {
   errorName: string | undefined;
   handleChange: (value: string) => void;
   objectGuid?: string;
+  label: string;
 }

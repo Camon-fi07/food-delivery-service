@@ -1,0 +1,50 @@
+@import "App/styles/colors.scss";
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user_data {
+  display: grid;
+  gap: 15px;
+  border: 2px solid $fieldBorder;
+  padding: 10px;
+  & .title {
+    font-size: 26px;
+  }
+}
+
+.button {
+  font-weight: 550;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text;
+  font-size: 24px;
+  background-color: $success;
+}
+
+.price {
+  font-size: 26px;
+}
+
+@media (min-width: 379px) {
+  .button {
+    width: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  .user_data {
+    grid-template-areas:
+      "title title"
+      "email phone";
+
+    & .title {
+      grid-area: title;
+    }
+  }
+}

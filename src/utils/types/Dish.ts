@@ -43,9 +43,3 @@ export interface DishPagedListDto {
     current: number;
   };
 }
-
-export interface CartState {
-  dishes: DishBasketDto[];
-  isLoading: boolean;
-  error: string;
-}

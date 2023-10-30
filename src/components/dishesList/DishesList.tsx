@@ -1,11 +1,11 @@
-import { DishBasketDto } from "utils/types/Dish";
 import style from "./style.module.scss";
 import { CartItem } from "components/cartItem/CartItem";
 import { deleteDish } from "utils/helpers/changeDishCount";
 import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { getCart } from "store/reducers/cart/cartAsyncActions";
+import { DishListInfo } from "utils/types/CartInfo";
 
-export const DishesList = ({ dishes }: { dishes: DishBasketDto[] }) => {
+export const DishesList = ({ dishes, canChange }: DishListInfo) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.userReducer);
   return (
@@ -24,6 +24,7 @@ export const DishesList = ({ dishes }: { dishes: DishBasketDto[] }) => {
           }}
           dish={dish}
           index={index + 1}
+          canChange={canChange}
         />
       ))}
     </section>

@@ -11,6 +11,7 @@ import { Profile } from "pages/Profile/Profile.tsx";
 import { Menu } from "pages/Menu/Menu.tsx";
 import { Dish } from "pages/Dish/Dish.tsx";
 import { Cart } from "pages/Cart/Cart.tsx";
+import { Purchase } from "pages/Purchase/Purchase.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/purchase",
-        element: <div>Purchase</div>,
+        element: <Purchase />,
       },
       {
         path: "/orders",

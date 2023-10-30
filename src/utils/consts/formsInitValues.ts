@@ -2,6 +2,7 @@ import { Gender } from "utils/types/Gender";
 import { loginValidateScheme, profileValidateScheme, registrationValidateScheme } from "./validation";
 import { Authorization, UserDto, UserRegisterModel, UserEditModel } from "utils/types/User";
 import { FormInfo } from "utils/types/FormInfo";
+import { OrderDTo } from "utils/types/CartInfo";
 
 export const registrationInitValues = (onSubmit: (value: UserRegisterModel) => void): FormInfo<UserRegisterModel> => {
   return {
@@ -41,7 +42,7 @@ export const registrationInitValues = (onSubmit: (value: UserRegisterModel) => v
         type: "password",
       },
       {
-        label: "Адрес",
+        label: "Адрес проживания",
         name: "addressId",
         type: "address",
       },
@@ -111,7 +112,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         defaultValue: user.email,
       },
       {
-        label: "Адрес",
+        label: "Адрес проживания",
         name: "addressId",
         type: "address",
         defaultValue: user.address,
@@ -122,3 +123,10 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
     actionName: "Изменить",
   };
 };
+
+export const purchaseInitValues = (user: UserDto): OrderDTo => ({
+  addressId: user.address,
+  deliveryTime: "",
+  email: user.email,
+  phone: user.phoneNumber,
+});

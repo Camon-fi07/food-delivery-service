@@ -24,3 +24,10 @@ export const profileValidateScheme = yup.object().shape({
   gender: yup.string().required(required),
   phoneNumber: yup.string().required(required).matches(phoneReg, "Неправильный формат телефона"),
 });
+
+export const purchaseValidateScheme = yup.object().shape({
+  addressId: yup.string().required(required),
+  email: yup.string().required(required).email(email),
+  phone: yup.string().required(required).matches(phoneReg, "Неправильный формат телефона"),
+  deliveryTime: yup.string().required(required),
+});
