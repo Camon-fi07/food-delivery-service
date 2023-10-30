@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { order } from "utils/consts/apiUrls";
 import { OrderInfoDto } from "utils/types/Order";
 
-export const useOrders = (token: string) => {
+export const useOrders = (token: string, onError: () => void) => {
   const [orders, setOrders] = useState<OrderInfoDto[]>([]);
   const getOrders = () => {
     const config = {
@@ -15,7 +14,7 @@ export const useOrders = (token: string) => {
     axios
       .get<OrderInfoDto[]>(order, config)
       .then((res) => setOrders(res.data))
-      .catch((err) => toast.error(err));
+      .catch(() => onError());
   };
   useEffect(() => {
     getOrders();
