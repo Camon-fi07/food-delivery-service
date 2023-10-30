@@ -5,6 +5,11 @@ export enum OrderStatus {
   Delivered = "Delivered",
 }
 
+export const OrderStatusTranslate = {
+  InProcess: "В обработке",
+  Delivered: "Доставлен",
+};
+
 export interface OrderDto {
   id: string;
   deliveryTime: string;
