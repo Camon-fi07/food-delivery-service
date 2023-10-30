@@ -14,7 +14,7 @@ export const Purchase = () => {
     <div className={style.purchase}>
       <h2 className={style.title}>Оформление заказа</h2>
       <Formik
-        initialValues={{ email: user.email, phone: user.phoneNumber, address: user.address }}
+        initialValues={{ email: user.email, deliveryTime: "", phone: user.phoneNumber, addressId: user.address }}
         validationSchema={purchaseValidateScheme}
         onSubmit={(values) => console.log(values)}
       >
@@ -40,19 +40,30 @@ export const Purchase = () => {
                 defaultValueName={values["email"]}
                 label="Email"
                 name="email"
-                type="texy"
+                type="text"
               />
             </div>
+            <FormValue
+              isError={errors["deliveryTime"] && touched["deliveryTime"]}
+              errorName={errors["deliveryTime"]}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              label="Дата и время доставки"
+              name="deliveryTime"
+              type="datetime-local"
+            />
             <AddressForm
-              isError={errors["address"] && touched["address"]}
-              errorName={errors["address"]}
+              isError={errors["addressId"] && touched["addressId"]}
+              errorName={errors["addressId"]}
               handleChange={(value) => {
                 setFieldValue("address", value);
               }}
-              objectGuid={values.address}
+              objectGuid={values.addressId}
               label={"Адрес доставки"}
             />
-            <button className={style.button}>Подтвердить заказ</button>
+            <button type="submit" className={style.button}>
+              Подтвердить заказ
+            </button>
           </Form>
         )}
       </Formik>
