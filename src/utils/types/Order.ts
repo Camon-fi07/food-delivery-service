@@ -27,3 +27,13 @@ export interface OrderInfoDto {
   status: OrderStatus;
   price: number;
 }
+
+export interface OrderItemOnfo {
+  order: OrderInfoDto;
+  onConfirm: () => void;
+}
+
+export interface OrderListOnfo {
+  orders: OrderInfoDto[];
+  getOrders: () => void;
+}

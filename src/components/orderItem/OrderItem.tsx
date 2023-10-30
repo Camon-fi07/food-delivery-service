@@ -1,8 +1,8 @@
-import { OrderInfoDto, OrderStatus, OrderStatusTranslate } from "utils/types/Order";
+import { OrderItemOnfo, OrderStatus, OrderStatusTranslate } from "utils/types/Order";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
 
-export const OrderItem = ({ order }: { order: OrderInfoDto }) => {
+export const OrderItem = ({ order, onConfirm }: OrderItemOnfo) => {
   return (
     <article className={style.order_item}>
       <div className={style.description}>
@@ -14,7 +14,7 @@ export const OrderItem = ({ order }: { order: OrderInfoDto }) => {
         </span>
       </div>
       <div className={style.delivery}>
-        {order.status === OrderStatus.InProcess ? <button>Подтвердить доставку</button> : ""}
+        {order.status === OrderStatus.InProcess ? <button onClick={onConfirm}>Подтвердить доставку</button> : ""}
         <span>
           <b>Стоимость заказа:</b> {order.price} руб.
         </span>

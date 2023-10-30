@@ -1,17 +1,17 @@
 import { ToastContainer } from "react-toastify";
-import style from "./style.module.scss";
-import { useOrders } from "utils/hooks/getOrders";
+import { useOrders } from "utils/hooks/useOrders";
 import { useAppSelector } from "utils/hooks/redux";
 import { OrdersList } from "components/ordersList/OrdersList";
+import style from "./style.module.scss";
 
 export const Orders = () => {
   const user = useAppSelector((state) => state.userReducer);
-  const orders = useOrders(user.data.token);
+  const { orders, getOrders } = useOrders(user.data.token);
   return (
     <div className={style.orders}>
       <ToastContainer />
       <h2 className={style.title}>Последние заказы</h2>
-      <OrdersList orders={orders} />
+      <OrdersList orders={orders} getOrders={getOrders} />
     </div>
   );
 };

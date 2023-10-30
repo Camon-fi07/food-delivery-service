@@ -6,8 +6,7 @@ import { OrderInfoDto } from "utils/types/Order";
 
 export const useOrders = (token: string) => {
   const [orders, setOrders] = useState<OrderInfoDto[]>([]);
-
-  useEffect(() => {
+  const getOrders = () => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -17,7 +16,10 @@ export const useOrders = (token: string) => {
       .get<OrderInfoDto[]>(order, config)
       .then((res) => setOrders(res.data))
       .catch((err) => toast.error(err));
+  };
+  useEffect(() => {
+    getOrders();
   }, []);
 
-  return orders;
+  return { orders, getOrders };
 };
