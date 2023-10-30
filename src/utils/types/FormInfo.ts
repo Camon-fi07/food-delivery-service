@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { DishBasketDto } from "./Dish";
 
 export interface InputInfo {
   label: string;
@@ -28,4 +29,9 @@ export interface FormInfo<T> {
   onSubmit: (value: T) => void;
   vaidation: Yup.Schema<any>;
   actionName: string;
+}
+
+export interface PurchaseFormInfo {
+  onSubmit: (values: { phone: string; addressId: string; deliveryTime: string; email: string }) => void;
+  dishes: DishBasketDto[];
 }

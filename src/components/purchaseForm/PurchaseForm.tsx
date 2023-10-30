@@ -6,17 +6,18 @@ import { AddressForm } from "components/AddressForm/AddressForm";
 import style from "./style.module.scss";
 import { DishesList } from "components/dishesList/DishesList";
 import { getTotalPrice } from "utils/helpers/getTotalPrice";
+import { PurchaseFormInfo } from "utils/types/FormInfo";
 
-export const PurchaseForm = () => {
+export const PurchaseForm = (props: PurchaseFormInfo) => {
   const {
     data: { user },
   } = useAppSelector((state) => state.userReducer);
-  const { dishes } = useAppSelector((state) => state.cartReducer);
+
   return (
     <Formik
       initialValues={{ email: user.email, deliveryTime: "", phone: user.phoneNumber, addressId: user.address }}
       validationSchema={purchaseValidateScheme}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={props.onSubmit}
     >
       {({ errors, touched, handleChange, handleBlur, values, setFieldValue }) => (
         <Form className={style.form}>
@@ -61,9 +62,9 @@ export const PurchaseForm = () => {
             objectGuid={values.addressId}
             label={"Адрес доставки"}
           />
-          <DishesList dishes={dishes} canChange={false} />
+          <DishesList dishes={props.dishes} canChange={false} />
           <span className={style.price}>
-            <b>Стоимость заказа: </b> {getTotalPrice(dishes)}
+            <b>Стоимость заказа: </b> {getTotalPrice(props.dishes)}
           </span>
           <button type="submit" className={style.button}>
             Подтвердить заказ
