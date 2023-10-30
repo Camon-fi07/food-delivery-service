@@ -4,11 +4,14 @@ import { purchaseValidateScheme } from "utils/consts/validation";
 import { useAppSelector } from "utils/hooks/redux";
 import { AddressForm } from "components/AddressForm/AddressForm";
 import style from "./style.module.scss";
+import { DishesList } from "components/dishesList/DishesList";
+import { getTotalPrice } from "utils/helpers/getTotalPrice";
 
 export const PurchaseForm = () => {
   const {
     data: { user },
   } = useAppSelector((state) => state.userReducer);
+  const { dishes } = useAppSelector((state) => state.cartReducer);
   return (
     <Formik
       initialValues={{ email: user.email, deliveryTime: "", phone: user.phoneNumber, addressId: user.address }}
@@ -58,6 +61,10 @@ export const PurchaseForm = () => {
             objectGuid={values.addressId}
             label={"Адрес доставки"}
           />
+          <DishesList dishes={dishes} canChange={false} />
+          <span className={style.price}>
+            <b>Стоимость заказа: </b> {getTotalPrice(dishes)}
+          </span>
           <button type="submit" className={style.button}>
             Подтвердить заказ
           </button>
