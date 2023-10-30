@@ -60,6 +60,10 @@
   font-weight: 500;
 }
 
+.total_price {
+  font-size: 24px;
+}
+
 @media (min-width: 768px) {
   .index {
     display: block;
@@ -69,6 +73,7 @@
     * & {
       text-wrap: nowrap;
     }
+    margin-right: auto;
   }
   .title {
     font-size: 18px;
@@ -82,7 +87,11 @@
     grid-template-columns: 20px minmax(140px, 200px) 1fr minmax(200px, 1fr) 1fr;
   }
 
-  .delete_btn {
+  .order_item {
+    grid-template-columns: 20px minmax(140px, 200px) 1fr 1fr;
+  }
+  .delete_btn,
+  .total_price {
     margin-left: auto;
   }
 }
@@ -96,5 +105,9 @@
   }
   .cart_item {
     grid-template-columns: 20px 250px 1fr minmax(200px, 1fr) 1fr;
+  }
+
+  .order_item {
+    grid-template-columns: 20px 250px 1fr 1fr;
   }
 }

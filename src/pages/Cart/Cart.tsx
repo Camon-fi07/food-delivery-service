@@ -12,7 +12,7 @@ export const Cart = () => {
   return (
     <div className={style.cart}>
       <h2 className={style.title}>Товары в корзине</h2>
-      <DishesList dishes={dishes} />
+      <DishesList canChange={true} dishes={dishes} />
       <Link className={style.link} to={"/purchase"}>
         Верно, к оплате
         <span>{getTotalPrice(dishes)} ₽</span>
