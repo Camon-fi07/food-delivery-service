@@ -41,7 +41,7 @@ export const registrationInitValues = (onSubmit: (value: UserRegisterModel) => v
         type: "password",
       },
       {
-        label: "Адрес",
+        label: "Адрес проживания",
         name: "addressId",
         type: "address",
       },
@@ -111,7 +111,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         defaultValue: user.email,
       },
       {
-        label: "Адрес",
+        label: "Адрес проживания",
         name: "addressId",
         type: "address",
         defaultValue: user.address,
