@@ -18,5 +18,5 @@ export const useGetRequest = <T>(url: string, onError: () => void, token?: strin
     getData();
   }, []);
 
-  return { getData, data };
+  return { getData, data, setData };
 };

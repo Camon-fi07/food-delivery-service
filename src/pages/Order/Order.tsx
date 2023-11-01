@@ -8,15 +8,20 @@ import { useAppSelector } from "utils/hooks/redux";
 import style from "./style.module.scss";
 import { confirmOrder } from "utils/helpers/confirmOrder";
 import { convertDate } from "utils/helpers/convertDate";
+import { convertAddressChain } from "utils/helpers/addressChain";
+import { useEffect } from "react";
 
 export const Order = () => {
   const { token } = useAppSelector((state) => state.userReducer).data;
   const { id } = useParams();
-  const { data, getData } = useGetRequest<OrderDto>(
+  const { data, getData, setData } = useGetRequest<OrderDto>(
     specificOrder(id!),
     () => toast.error("Произошла ошибка при загрузке", { theme: "dark", autoClose: 1000 }),
     token,
   );
+  useEffect(() => {
+    if (data) convertAddressChain(data.address).then((res) => setData({ ...data, address: res }));
+  }, [data]);
 
   return (
     <div className={style.order}>
