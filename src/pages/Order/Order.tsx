@@ -7,6 +7,7 @@ import { DishesList } from "components/dishesList/DishesList";
 import { useAppSelector } from "utils/hooks/redux";
 import style from "./style.module.scss";
 import { confirmOrder } from "utils/helpers/confirmOrder";
+import { convertDate } from "utils/helpers/convertDate";
 
 export const Order = () => {
   const { token } = useAppSelector((state) => state.userReducer).data;
@@ -33,10 +34,10 @@ export const Order = () => {
             )}
           </div>
           <p className={style.description}>
-            Дата заказа: <span>{data.orderTime}</span>
+            Дата заказа: <span>{convertDate(data.orderTime)}</span>
           </p>
           <p className={style.description}>
-            Дата доставки: <span>{data.deliveryTime}</span>
+            Дата доставки: <span>{convertDate(data.deliveryTime)}</span>
           </p>
           <p className={style.description}>
             Адрес доставки: <span>{data.address}</span>
