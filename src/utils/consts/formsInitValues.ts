@@ -2,7 +2,7 @@ import { Gender } from "utils/types/Gender";
 import { loginValidateScheme, profileValidateScheme, registrationValidateScheme } from "./validation";
 import { Authorization, UserDto, UserRegisterModel, UserEditModel } from "utils/types/User";
 import { FormInfo } from "utils/types/FormInfo";
-import { OrderDTo } from "utils/types/CartInfo";
+import { PurchaseDto } from "utils/types/CartInfo";
 
 export const registrationInitValues = (onSubmit: (value: UserRegisterModel) => void): FormInfo<UserRegisterModel> => {
   return {
@@ -124,7 +124,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
   };
 };
 
-export const purchaseInitValues = (user: UserDto): OrderDTo => ({
+export const purchaseInitValues = (user: UserDto): PurchaseDto => ({
   addressId: user.address,
   deliveryTime: "",
   email: user.email,

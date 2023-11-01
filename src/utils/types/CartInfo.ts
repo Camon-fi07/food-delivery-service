@@ -1,6 +1,6 @@
 import { DishBasketDto } from "./Dish";
 
-export interface OrderDTo {
+export interface PurchaseDto {
   phone: string;
   addressId: string;
   deliveryTime: string;

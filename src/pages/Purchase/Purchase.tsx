@@ -1,6 +1,6 @@
 import { PurchaseForm } from "components/purchaseForm/PurchaseForm";
 import { useAppSelector } from "utils/hooks/redux";
-import { OrderDTo } from "utils/types/CartInfo";
+import { PurchaseDto } from "utils/types/CartInfo";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -12,7 +12,7 @@ export const Purchase = () => {
   const user = useAppSelector((state) => state.userReducer);
   const { dishes } = useAppSelector((state) => state.cartReducer);
   const navigate = useNavigate();
-  const onSubmit = (values: OrderDTo) => {
+  const onSubmit = (values: PurchaseDto) => {
     const config = {
       headers: {
         Authorization: `Bearer ${user.data.token}`,
