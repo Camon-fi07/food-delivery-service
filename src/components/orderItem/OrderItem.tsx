@@ -6,7 +6,7 @@ export const OrderItem = ({ order, onConfirm }: OrderItemOnfo) => {
   return (
     <article className={style.order_item}>
       <div className={style.description}>
-        <Link to={`/order/:${order.id}`}>Заказ от {order.orderTime}</Link>
+        <Link to={`/order/${order.id}`}>Заказ от {order.orderTime}</Link>
         <span>Статус заказа - {OrderStatusTranslate[order.status]}</span>
         <span>
           {order.status === OrderStatus.InProcess ? "Доставка ожидается в " : "Доставлен: "}

@@ -1,0 +1,49 @@
+@import "App/styles/colors.scss";
+.order {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  gap: 10px;
+  & * {
+    font-size: 24px;
+  }
+}
+
+.head {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid $fieldBorder;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.confirm {
+  padding: 10px;
+  background-color: $success;
+  color: $text;
+  text-align: center;
+}
+
+.id {
+  font-size: 26px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  font-size: 22px;
+  gap: 5px;
+}
+
+@media (min-width: 768px) {
+  .description {
+    flex-direction: row;
+  }
+  .head {
+    flex-direction: row;
+  }
+}

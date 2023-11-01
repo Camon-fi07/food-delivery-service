@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { DishBasketDto } from "./Dish";
-import { OrderDTo } from "./CartInfo";
+import { PurchaseDto } from "./CartInfo";
 
 export interface InputInfo {
   label: string;
@@ -33,7 +33,7 @@ export interface FormInfo<T> {
 }
 
 export interface PurchaseFormInfo {
-  onSubmit: (values: OrderDTo) => void;
+  onSubmit: (values: PurchaseDto) => void;
   dishes: DishBasketDto[];
-  initialValues: OrderDTo;
+  initialValues: PurchaseDto;
 }
