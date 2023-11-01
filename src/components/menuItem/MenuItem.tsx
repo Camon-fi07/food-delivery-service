@@ -30,7 +30,7 @@ export const MenuItem = (props: MenuItemInfo) => {
             <button onClick={props.add}>Купить</button>
           )
         ) : (
-          <span>Необходимо авторизоваться</span>
+          <span>Для покупки необходимо авторизоваться</span>
         )}
       </div>
     </article>

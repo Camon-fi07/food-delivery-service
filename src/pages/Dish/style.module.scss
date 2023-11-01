@@ -53,6 +53,20 @@
   gap: 10px;
 }
 
+.buy_menu {
+  display: flex;
+  justify-content: center;
+  & button {
+    padding: 3px 0;
+    background-color: $btnBackground;
+    text-align: center;
+    width: 100%;
+    color: $text;
+    font-size: 26px;
+    border-radius: 5px;
+  }
+}
+
 @media (min-width: 768px) {
   .dish {
     width: 60%;
