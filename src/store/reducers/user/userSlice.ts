@@ -31,34 +31,35 @@ export const userSlice = createSlice({
       state.error = "";
     },
   },
-  extraReducers: {
-    [getUser.pending.type]: (state) => {
-      state.error = "";
-      state.isLoading = true;
-    },
-    [getUser.fulfilled.type]: (state, action: PayloadAction<UserDto>) => {
-      state.data.user = action.payload;
-      state.isAuth = true;
-      state.isLoading = false;
-    },
-    [getUser.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
-      state.data = initialState.data;
-      state.isAuth = false;
-    },
-    [getToken.pending.type]: (state) => {
-      state.error = "";
-      state.isLoading = true;
-    },
-    [getToken.fulfilled.type]: (state, action: PayloadAction<string>) => {
-      state.data.token = action.payload;
-      state.isLoading = false;
-    },
-    [getToken.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUser.pending, (state) => {
+        state.error = "";
+        state.isLoading = true;
+      })
+      .addCase(getUser.fulfilled, (state, action: PayloadAction<UserDto>) => {
+        state.data.user = action.payload;
+        state.isAuth = true;
+        state.isLoading = false;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "";
+        state.data = initialState.data;
+        state.isAuth = false;
+      })
+      .addCase(getToken.pending, (state) => {
+        state.error = "";
+        state.isLoading = true;
+      })
+      .addCase(getToken.fulfilled, (state, action: PayloadAction<string>) => {
+        state.data.token = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getToken.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || "";
+      });
   },
 });
 export default userSlice.reducer;

@@ -16,7 +16,7 @@ export const getUser = createAsyncThunk("getUser", async (token: string, thunkAP
     return response.data;
   } catch (err) {
     const error = err as Error;
-    return thunkAPI.rejectWithValue(error.message);
+    throw error;
   }
 });
 
@@ -29,7 +29,7 @@ export const getToken = createAsyncThunk(
       return response.data.token;
     } catch (err) {
       const error = err as Error;
-      return thunkAPI.rejectWithValue(error.message);
+      throw error;
     }
   },
 );
