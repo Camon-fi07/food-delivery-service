@@ -69,6 +69,9 @@
 }
 
 @media (min-width: 768px) {
+  .burger_menu {
+    display: none;
+  }
   .head {
     grid-template-columns: 1fr repeat(2, 5fr) 1fr;
   }
