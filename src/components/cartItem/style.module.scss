@@ -1,0 +1,113 @@
+@import "App/styles/colors.scss";
+
+.cart_item {
+  border: 2px solid $fieldBorder;
+  padding: 10px;
+  display: grid;
+  align-items: center;
+  height: 100%;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.image {
+  width: 100%;
+  padding-top: 266/407 * 100%;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.index {
+  align-self: self-start;
+  font-size: 22px;
+  text-align: center;
+  display: none;
+}
+
+.cost {
+  font-size: 22px;
+  color: $subTitle;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  & * {
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: 26px;
+}
+
+.delete_btn {
+  background-color: $error;
+  color: $text;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.total_price {
+  font-size: 24px;
+}
+
+@media (min-width: 768px) {
+  .index {
+    display: block;
+  }
+  .description {
+    font-size: 18px;
+    * & {
+      text-wrap: nowrap;
+    }
+    margin-right: auto;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .cost {
+    font-size: 16px;
+  }
+
+  .cart_item {
+    grid-template-rows: 1fr;
+    grid-template-columns: 20px minmax(140px, 200px) 1fr minmax(200px, 1fr) 1fr;
+  }
+
+  .order_item {
+    grid-template-columns: 20px minmax(140px, 200px) 1fr 1fr;
+  }
+  .delete_btn,
+  .total_price {
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 26px;
+  }
+  .cost {
+    font-size: 20px;
+  }
+  .cart_item {
+    grid-template-columns: 20px 250px 1fr minmax(200px, 1fr) 1fr;
+  }
+
+  .order_item {
+    grid-template-columns: 20px 250px 1fr 1fr;
+  }
+}

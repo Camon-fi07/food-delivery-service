@@ -1,0 +1,6 @@
+.menu_list {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+  gap: 20px;
+}

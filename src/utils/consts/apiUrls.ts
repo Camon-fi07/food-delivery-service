@@ -1,0 +1,18 @@
+export const root = "https://food-delivery.kreosoft.ru/api";
+const address = `${root}/address`;
+const users = `${root}/account`;
+export const order = `${root}/order`;
+export const specificOrder = (id: string) => `${order}/${id}`;
+export const statusOrder = (id: string) => `${order}/${id}/status`;
+export const basket = `${root}/basket`;
+export const basketDish = (id: string) => `${basket}/dish/${id}`;
+export const dish = `${root}/dish`;
+export const specificDish = (id: string) => `${dish}/${id}`;
+export const ratingDish = (id: string) => `${specificDish(id)}/rating`;
+export const checkRating = (id: string) => `${ratingDish(id)}/check`;
+export const addressSearch = `${address}/search`;
+export const addressChain = `${address}/getaddresschain`;
+export const registration = `${users}/register`;
+export const userProfile = `${users}/profile`;
+export const userLogin = `${users}/login`;
+export const userLogout = `${users}/logout`;

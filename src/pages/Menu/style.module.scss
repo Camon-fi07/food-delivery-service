@@ -1,0 +1,21 @@
+@import "App/styles/colors.scss";
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.page_change {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: $btnBackground;
+  border-radius: 5px;
+  width: 10%;
+  & * {
+    font-size: 26px;
+    color: $text;
+  }
+}

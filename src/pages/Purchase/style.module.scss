@@ -1,0 +1,13 @@
+@import "App/styles/colors.scss";
+.purchase {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}

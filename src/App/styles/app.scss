@@ -1,1 +1,17 @@
-@import url("./null.scss");
+@import "./null.scss";
+@import "./colors.scss";
+@import "react-toastify/dist/ReactToastify.css";
+.app {
+  background-color: $background;
+  min-height: 100%;
+  color: $text;
+  padding-bottom: 10px;
+  position: relative;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+
+label {
+  font-size: 18px;
+  color: $subTitle;
+}
