@@ -1,14 +1,5 @@
 @import "App/styles/colors.scss";
-.menu_selector {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.parameter {
-  width: 95%;
+.checked_list {
   position: relative;
   & button {
     width: 100%;
@@ -42,41 +33,6 @@
       display: flex;
       justify-content: space-between;
       gap: 10px;
-    }
-  }
-}
-
-.absolute {
-  position: absolute;
-  z-index: 3;
-}
-.vegeterian {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  & label {
-    font-size: 20px;
-  }
-}
-
-@media (min-width: 379px) {
-  .vegeterian {
-    & label {
-      font-size: 26px;
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .menu_selector {
-    justify-content: space-around;
-    flex-direction: row;
-  }
-  .parameter {
-    width: auto;
-    & ul {
-      width: 120%;
-      left: -10%;
     }
   }
 }

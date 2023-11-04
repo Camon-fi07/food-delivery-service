@@ -9,7 +9,7 @@ export const DropDown = (props: DropDownInfo) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className={style.drop_down}>
+    <div className={`${style.drop_down} ${props.classNames}`}>
       {props.type === "selectInput" ? (
         <input
           onFocus={() => setIsVisible(true)}
@@ -28,7 +28,7 @@ export const DropDown = (props: DropDownInfo) => {
         </button>
       )}
       {isVisible && (
-        <ul className={style.values}>
+        <ul className={`${style.values} ${props.listClassNames}`}>
           {props.options.map((item) => (
             <li>
               <option
