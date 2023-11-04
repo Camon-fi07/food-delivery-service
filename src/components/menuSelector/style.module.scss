@@ -10,45 +10,22 @@
 .parameter {
   width: 95%;
   position: relative;
-  & button {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
-    border: 1px solid $fieldBorder;
-    border-radius: 8px;
-    padding: 10px;
-  }
+  background-color: $background;
   & * {
-    color: $text;
     font-size: 26px;
   }
-  & ul {
-    border: 2px solid $fieldBorder;
-    background-color: $background;
-    position: absolute;
-    z-index: 3;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    & li {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-  }
+}
+
+.absolute_list {
+  position: absolute;
+  z-index: 3;
 }
 .vegeterian {
+  width: 95%;
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: flex-start;
   & label {
     font-size: 20px;
   }
@@ -67,11 +44,12 @@
     justify-content: space-around;
     flex-direction: row;
   }
-  .parameter {
+  .parameter,
+  .vegeterian {
     width: auto;
-    & ul {
-      width: 120%;
-      left: -10%;
-    }
+  }
+  .absolute_list {
+    width: 120%;
+    left: -10%;
   }
 }
