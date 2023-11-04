@@ -1,5 +1,5 @@
 import { PurchaseForm } from "components/purchaseForm/PurchaseForm";
-import { useAppSelector } from "utils/hooks/redux";
+import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { PurchaseDto } from "utils/types/CartInfo";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,11 +7,13 @@ import axios from "axios";
 import { order } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
 import { purchaseInitValues } from "utils/consts/formsInitValues";
+import { getCart } from "store/reducers/cart/cartAsyncActions";
 
 export const Purchase = () => {
   const user = useAppSelector((state) => state.userReducer);
   const { dishes } = useAppSelector((state) => state.cartReducer);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const onSubmit = (values: PurchaseDto) => {
     const config = {
       headers: {
@@ -21,7 +23,9 @@ export const Purchase = () => {
     const data = { deliveryTime: values.deliveryTime, addressId: values.addressId };
     toast.promise(
       axios.post(order, data, config).then(() => {
-        navigate("/orders");
+        dispatch(getCart(user.data.token)).then(() => {
+          navigate("/orders");
+        });
       }),
       {
         pending: "Происходит изменение",
