@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { DishCategory, DishSorting } from "utils/types/Dish";
-import style from "./style.module.scss";
-import arrowUp from "assets/arrowUp.svg";
-import arrowDown from "assets/arrowDown.svg";
 import { MenuSelectorInfo } from "utils/types/MenuSelectorInfo";
 import { DropDown } from "components/dropDown/DropDown";
 import { ListChecked } from "components/listChecked/ListChecked";
+import style from "./style.module.scss";
 
 export const MenuSelector = (props: MenuSelectorInfo) => {
-  const [isSorting, setIsSorting] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState(false);
   return (
     <div className={style.menu_selector}>
       <ListChecked
@@ -20,21 +15,20 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
           name: DishCategory[key as keyof typeof DishCategory],
           checked: props.categories.includes(key),
         }))}
+        listClassNames={style.absolute_list}
+        classNames={style.parameter}
       />
-      <div className={`${style.vegeterian} ${style.parameter}`}>
+      <div className={style.vegeterian}>
         <input
           type="checkbox"
-          name="category"
+          name="vegetarian"
           checked={props.vegetarian}
-          onClick={() => {
-            setIsVegetarian(!isVegetarian);
-          }}
           onChange={() => {
-            props.setVegetarian(String(!isVegetarian));
+            props.setVegetarian(String(!props.vegetarian));
           }}
-          value={String(isVegetarian)}
+          value={String(props.vegetarian)}
         />
-        <label htmlFor="category">Показать только вегетерианские</label>
+        <label htmlFor="vegetarian">Показать только вегетерианские</label>
       </div>
       <DropDown
         handleChange={(e) => {
@@ -47,7 +41,7 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
         }))}
         type="select"
         defaultValueName={DishSorting.NameAsc}
-        listClassNames={`${style.absolute}`}
+        listClassNames={`${style.absolute_list}`}
         classNames={`${style.parameter}`}
       />
     </div>

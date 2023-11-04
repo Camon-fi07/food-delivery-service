@@ -1,17 +1,20 @@
 @import "App/styles/colors.scss";
 .drop_down {
+  background-color: $field;
   width: 100%;
+}
+
+.input {
+  background-color: $field;
 }
 
 .button,
 .input {
   width: 100%;
-  background-color: $field;
   height: 40px;
   border: 1px solid $fieldBorder;
   border-radius: 8px;
   padding-left: 5px;
-  font-size: 20px;
   color: $text;
   font-size: 22px;
 }
@@ -21,7 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .values {

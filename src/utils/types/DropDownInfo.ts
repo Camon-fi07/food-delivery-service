@@ -13,4 +13,6 @@ export interface ListCheckedInfo {
   name: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   options: { value: number | string; name: string; checked: boolean }[];
+  listClassNames?: string;
+  classNames?: string;
 }
