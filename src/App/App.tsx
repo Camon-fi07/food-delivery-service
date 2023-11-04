@@ -11,10 +11,8 @@ const App = () => {
   const { deleteError } = userSlice.actions;
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (user.isAuth)
-      dispatch(getUser(user.data.token)).then(() => {
-        if (user.error) dispatch(deleteError());
-      });
+    if (user.isAuth) dispatch(getUser(user.data.token)).then(() => dispatch(deleteError));
+    else dispatch(deleteError());
   }, []);
 
   return (
