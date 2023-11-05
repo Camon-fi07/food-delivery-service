@@ -8,8 +8,11 @@ import { order } from "utils/consts/apiUrls";
 import style from "./style.module.scss";
 import { purchaseInitValues } from "utils/consts/formsInitValues";
 import { getCart } from "store/reducers/cart/cartAsyncActions";
+import { useContext } from "react";
+import { ThemeContext } from "utils/context/theme";
 
 export const Purchase = () => {
+  const theme = useContext(ThemeContext);
   const user = useAppSelector((state) => state.userReducer);
   const { dishes } = useAppSelector((state) => state.cartReducer);
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ export const Purchase = () => {
         success: "Заказ сделан",
         error: "Произошла ошибка",
       },
-      { theme: "dark", autoClose: 1000 },
+      { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 },
     );
   };
   const initialValues = purchaseInitValues(user.data.user);

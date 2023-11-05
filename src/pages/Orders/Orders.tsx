@@ -6,12 +6,15 @@ import { useGetRequest } from "utils/hooks/useGetRequest";
 import { order } from "utils/consts/apiUrls";
 import { OrderInfoDto } from "utils/types/Order";
 import style from "./style.module.scss";
+import { useContext } from "react";
+import { ThemeContext } from "utils/context/theme";
 
 export const Orders = () => {
+  const theme = useContext(ThemeContext);
   const user = useAppSelector((state) => state.userReducer);
   const { data, getData } = useGetRequest<OrderInfoDto[]>(
     order,
-    () => toast.error("Произошла ошибка при загрузке", { theme: "dark", autoClose: 1000 }),
+    (error) => toast.error(error, { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
     user.data.token,
   );
   const cart = useAppSelector((state) => state.cartReducer);

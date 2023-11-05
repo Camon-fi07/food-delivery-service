@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useGetRequest = <T>(url: string, onError: () => void, token?: string) => {
+export const useGetRequest = <T>(url: string, onError: (value: string) => void, token?: string) => {
   const [data, setData] = useState<T>();
   const getData = () => {
     const config = {
@@ -12,7 +12,7 @@ export const useGetRequest = <T>(url: string, onError: () => void, token?: strin
     axios
       .get<T>(url, config)
       .then((res) => setData(res.data))
-      .catch(() => onError());
+      .catch((error: Error) => onError(error.message));
   };
   useEffect(() => {
     getData();

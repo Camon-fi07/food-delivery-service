@@ -2,16 +2,16 @@
 @import "./colors.scss";
 @import "react-toastify/dist/ReactToastify.css";
 .app {
-  background-color: $background;
+  background-color: var(--background);
   min-height: 100%;
-  color: $text;
-  padding-bottom: 10px;
+  color: var(--text);
   position: relative;
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  gap: 20px;
 }
 
 label {
   font-size: 18px;
-  color: $subTitle;
+  color: var(--subTitle);
 }

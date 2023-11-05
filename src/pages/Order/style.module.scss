@@ -1,6 +1,4 @@
-@import "App/styles/colors.scss";
 .order {
-  padding: 10px;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -15,7 +13,7 @@
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  border: 2px solid $fieldBorder;
+  border: 2px solid var(--fieldBorder);
   flex-direction: column;
   gap: 10px;
   align-items: center;
@@ -23,8 +21,8 @@
 
 .confirm {
   padding: 10px;
-  background-color: $success;
-  color: $text;
+  background-color: var(--success);
+  color: var(--text);
   text-align: center;
 }
 

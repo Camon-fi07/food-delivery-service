@@ -8,17 +8,20 @@ export interface InputInfo {
   errorName?: string;
   type: string;
   name: string;
+  disabled?: boolean;
   handleChange: (e: React.ChangeEvent<any>) => void;
   options?: { value: number | string; name: string }[];
   onBlur?: (e: React.FocusEvent<unknown>) => void;
   onInputChange?: (newValue: string) => void;
   defaultValueName?: string;
+  classNames?: string;
 }
 
 export interface ValueInfo {
   label: string;
   type: string;
   name: string;
+  disabled?: boolean;
   options?: { value: number | string; name: string }[];
   defaultValue?: string;
   defaultName?: string;
@@ -30,6 +33,7 @@ export interface FormInfo<T> {
   onSubmit: (value: T) => void;
   vaidation: Yup.Schema<any>;
   actionName: string;
+  inputClassNames?: string;
 }
 
 export interface PurchaseFormInfo {

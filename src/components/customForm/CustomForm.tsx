@@ -2,6 +2,7 @@ import { FormInfo } from "utils/types/FormInfo";
 import { useFormik } from "formik";
 import { FormValue } from "components/formValue/Formvalue";
 import { AddressForm } from "components/AddressForm/AddressForm";
+import { phoneMask } from "utils/helpers/phoneMask";
 import style from "./style.module.scss";
 
 export const CustomForm = <T,>(props: FormInfo<T>) => {
@@ -33,9 +34,13 @@ export const CustomForm = <T,>(props: FormInfo<T>) => {
           <FormValue
             isError={errors[item.name] && touched[item.name]}
             errorName={errors[item.name]}
-            handleChange={handleChange}
+            handleChange={(e) => {
+              if (item.type === "tel") handleChange(phoneMask(e, String(formik.values[item.name])));
+              else handleChange(e);
+            }}
             onBlur={handleBlur}
             defaultValueName={item.defaultName ? item.defaultName : item.defaultValue}
+            classNames={props.inputClassNames}
             {...item}
           />
         ),

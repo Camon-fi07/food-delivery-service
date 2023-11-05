@@ -7,20 +7,26 @@ export const Menu = () => {
   const { menu, setParamsByName, params, nextPage, previousPage } = useMenuList();
   return (
     <div className={style.menu}>
-      <MenuSelector
-        toggleCategory={(value) => setParamsByName("categories", value)}
-        setSorting={(value) => setParamsByName("sorting", value)}
-        setVegetarian={(value) => setParamsByName("vegetarian", value)}
-        sorting={params.get("sorting") || ""}
-        categories={params.get("categories")?.split(",") || []}
-        vegetarian={(params.get("vegetarian") || "false") == "true"}
-      />
-      {menu ? <MenuList dishes={menu.dishes} /> : ""}
-      <div className={style.page_change}>
-        <button onClick={() => previousPage()}>☚</button>
-        <span>{params.get("page") || 1}</span>
-        <button onClick={() => nextPage()}>☛</button>
-      </div>
+      {menu ? (
+        <>
+          <MenuSelector
+            toggleCategory={(value) => setParamsByName("categories", value)}
+            setSorting={(value) => setParamsByName("sorting", value)}
+            setVegetarian={(value) => setParamsByName("vegetarian", value)}
+            sorting={params.get("sorting") || ""}
+            categories={params.get("categories")?.split(",") || []}
+            vegetarian={(params.get("vegetarian") || "false") == "true"}
+          />
+          <MenuList dishes={menu.dishes} />
+          <div className={style.page_change}>
+            <button onClick={() => previousPage()}>☚</button>
+            <span>{params.get("page") || 1}</span>
+            <button onClick={() => nextPage()}>☛</button>
+          </div>{" "}
+        </>
+      ) : (
+        <p>Loading</p>
+      )}
     </div>
   );
 };

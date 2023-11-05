@@ -9,14 +9,16 @@ import style from "./style.module.scss";
 import { confirmOrder } from "utils/helpers/confirmOrder";
 import { convertDate } from "utils/helpers/convertDate";
 import { convertAddressChain } from "utils/helpers/addressChain";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "utils/context/theme";
 
 export const Order = () => {
+  const theme = useContext(ThemeContext);
   const { token } = useAppSelector((state) => state.userReducer).data;
   const { id } = useParams();
   const { data, getData, setData } = useGetRequest<OrderDto>(
     specificOrder(id!),
-    () => toast.error("Произошла ошибка при загрузке", { theme: "dark", autoClose: 1000 }),
+    (error) => toast.error(error, { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
     token,
   );
   useEffect(() => {

@@ -6,15 +6,17 @@ import style from "./style.module.scss";
 export const OrdersList = ({ orders, getOrders }: OrderListOnfo) => {
   const user = useAppSelector((state) => state.userReducer);
   return (
-    <section className={style.orders_list}>
+    <ul className={style.orders_list}>
       {orders.map((order) => (
-        <OrderItem
-          onConfirm={() => {
-            confirmOrder(order.id, user.data.token, getOrders);
-          }}
-          order={order}
-        />
+        <li>
+          <OrderItem
+            onConfirm={() => {
+              confirmOrder(order.id, user.data.token, getOrders);
+            }}
+            order={order}
+          />
+        </li>
       ))}
-    </section>
+    </ul>
   );
 };
