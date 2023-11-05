@@ -39,7 +39,7 @@ export const getAddressOfChain = async (
       return lastAddresses;
     }
   } catch (error) {
-    console.error(error);
-    throw error;
+    const err = error as Error;
+    throw err;
   }
 };
