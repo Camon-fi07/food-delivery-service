@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "utils/context/theme";
-import moon from "assets/moon-svgrepo-com.svg";
-import sun from "assets/sun-svgrepo-com.svg";
+import moon from "assets/moon.svg";
+import sun from "assets/sun.svg";
 import style from "./style.module.scss";
 
 export const ThemeToggle = () => {

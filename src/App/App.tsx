@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ isDark: isDark, toggleTheme: () => setIsDark(!theme) }}>
+    <ThemeContext.Provider value={{ isDark: isDark, toggleTheme: () => setIsDark(!isDark) }}>
       <div className={`app ${!isDark ? "light" : ""}`}>
         <Head />
         <Outlet />

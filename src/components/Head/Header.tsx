@@ -6,6 +6,7 @@ import { logout } from "utils/helpers/logout";
 import burgerMenuIcon from "assets/burger_menu_icon.svg.png";
 import { useWidth } from "utils/hooks/useWidth";
 import style from "./style.module.scss";
+import { ThemeToggle } from "components/themeToggle/ThemeToggle";
 
 export const Head = () => {
   const userInfo = useAppSelector((state) => state.userReducer);
@@ -86,6 +87,9 @@ export const Head = () => {
             </>
           )}
         </ul>
+      </div>
+      <div className={style.theme}>
+        <ThemeToggle />
       </div>
     </header>
   );
