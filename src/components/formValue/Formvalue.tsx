@@ -4,10 +4,12 @@ import { DropDown } from "components/dropDown/DropDown";
 
 export const FormValue = (props: InputInfo) => {
   return (
-    <div className={style.form_value}>
+    <div className={`${style.form_value} ${props.classNames}`}>
       <label htmlFor={props.name}>{props.label}</label>
       {props.isError && <span className={style.error}>{props.errorName}</span>}
-      {props.type == "select" || props.type == "selectInput" ? (
+      {props.disabled ? (
+        <span className={style.value}>{props.defaultValueName}</span>
+      ) : props.type == "select" || props.type == "selectInput" ? (
         <DropDown
           handleChange={props.handleChange}
           name={props.name}

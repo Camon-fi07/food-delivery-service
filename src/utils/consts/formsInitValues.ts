@@ -93,6 +93,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         ],
         defaultName: "Мужской",
         defaultValue: user.gender,
+        disabled: true,
       },
       {
         label: "Телефон",
@@ -111,6 +112,7 @@ export const profileInitValues = (user: UserDto, onSubmit: (value: UserEditModel
         name: "email",
         type: "text",
         defaultValue: user.email,
+        disabled: true,
       },
       {
         label: "Адрес проживания",

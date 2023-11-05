@@ -40,6 +40,7 @@ export const CustomForm = <T,>(props: FormInfo<T>) => {
             }}
             onBlur={handleBlur}
             defaultValueName={item.defaultName ? item.defaultName : item.defaultValue}
+            classNames={props.inputClassNames}
             {...item}
           />
         ),

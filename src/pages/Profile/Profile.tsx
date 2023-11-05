@@ -36,7 +36,7 @@ export const Profile = () => {
       <ToastContainer />
       <h1 className={style.title}>Профиль</h1>
       {user.error ? <span>{user.error}</span> : ""}
-      <CustomForm<UserEditModel> {...initValues} />
+      <CustomForm<UserEditModel> inputClassNames={style.field} {...initValues} />
     </div>
   );
 };
