@@ -5,10 +5,9 @@
   background-color: var(--background);
   min-height: 100%;
   color: var(--text);
-  padding-bottom: 10px;
   position: relative;
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px 1fr 50px;
   gap: 20px;
 }
 

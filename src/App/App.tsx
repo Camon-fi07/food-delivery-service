@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "utils/hooks/redux";
 import { userSlice } from "store/reducers/user/userSlice";
 import { ThemeContext, getTheme } from "utils/context/theme";
 import "./styles/app.scss";
+import { Footer } from "components/footer/Footer";
 
 const App = () => {
   const [isDark, setIsDark] = useState(getTheme());
@@ -22,6 +23,7 @@ const App = () => {
       <div className={`app ${!isDark ? "light" : ""}`}>
         <Head />
         <Outlet />
+        <Footer />
       </div>
     </ThemeContext.Provider>
   );
