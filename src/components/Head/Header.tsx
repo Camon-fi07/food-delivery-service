@@ -30,7 +30,7 @@ export const Head = () => {
   return (
     <header className={style.head}>
       <h1 className={style.logo}>
-        <Link to={"/"}>HITs delivery</Link>
+        <Link to={"/"}>Delivery.Кушац</Link>
       </h1>
       <div className={style.menu}>
         <button
