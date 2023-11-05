@@ -1,4 +1,3 @@
-@import "App/styles/colors.scss";
 .cart {
   margin: 0 auto;
   width: 90%;
@@ -15,9 +14,10 @@
   border-radius: 8px;
   align-self: center;
   padding: 10px;
-  background-color: $btnBackground;
+  background-color: var(--btnBackground);
   font-size: 26px;
-  border: $fieldBorder;
+  border: var(--fieldBorder);
+  color: var(--btnText) !important;
   display: flex;
   gap: 30px;
 }

@@ -1,11 +1,9 @@
-@import "App/styles/colors.scss";
-
 .addressSelect {
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  border: 2px solid $fieldBorder;
+  border: 2px solid var(--fieldBorder);
 }
 
 .title {

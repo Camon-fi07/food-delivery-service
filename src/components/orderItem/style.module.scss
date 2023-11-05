@@ -1,6 +1,5 @@
-@import "App/styles/colors.scss";
 .order_item {
-  border: 2px solid $fieldBorder;
+  border: 2px solid var(--fieldBorder);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -33,10 +32,9 @@
   }
   & button {
     text-align: center;
-    background-color: $success;
+    background-color: var(--success);
     padding: 10px;
     font-weight: 600;
-    color: $text;
     font-size: 22px;
   }
 }
