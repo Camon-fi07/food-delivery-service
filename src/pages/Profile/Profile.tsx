@@ -7,8 +7,11 @@ import { getUser } from "store/reducers/user/UserAsyncActions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import style from "./style.module.scss";
+import { useContext } from "react";
+import { ThemeContext } from "utils/context/theme";
 
 export const Profile = () => {
+  const theme = useContext(ThemeContext);
   const user = useAppSelector((state) => state.userReducer);
   const dispatch = useAppDispatch();
   const onSubmit = (values: UserEditModel) => {
@@ -26,7 +29,7 @@ export const Profile = () => {
         success: "Профиль успешно обновлён",
         error: "Произошла ошибка",
       },
-      { theme: "dark", autoClose: 1000 },
+      { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 },
     );
   };
 
