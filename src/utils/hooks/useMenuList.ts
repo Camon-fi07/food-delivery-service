@@ -51,7 +51,7 @@ export const useMenuList = () => {
         setMenu(res.data);
         setValues({ categories: categories || null, ...configParams });
       })
-      .catch((e) => {
+      .catch(() => {
         if (values.page) params.set("page", values.page);
         if (values.vegetarian) params.set("vegetarian", values.vegetarian);
         if (values.sorting) params.set("sorting", values.sorting);
