@@ -2,9 +2,9 @@
 @import "./colors.scss";
 @import "react-toastify/dist/ReactToastify.css";
 .app {
-  background-color: $background;
+  background-color: var(--background);
   min-height: 100%;
-  color: $text;
+  color: var(--text);
   padding-bottom: 10px;
   position: relative;
   display: grid;
@@ -14,5 +14,5 @@
 
 label {
   font-size: 18px;
-  color: $subTitle;
+  color: var(--subTitle);
 }

@@ -1,7 +1,5 @@
-@import "App/styles/colors.scss";
-
 .cart_item {
-  border: 2px solid $fieldBorder;
+  border: 2px solid var(--fieldBorder);
   padding: 10px;
   display: grid;
   align-items: center;
@@ -34,7 +32,7 @@
 
 .cost {
   font-size: 22px;
-  color: $subTitle;
+  color: var(--subTitle);
 }
 
 .description {
@@ -51,8 +49,8 @@
 }
 
 .delete_btn {
-  background-color: $error;
-  color: $text;
+  background-color: var(--error);
+  color: var(--text);
   width: 150px;
   height: 40px;
   text-align: center;
