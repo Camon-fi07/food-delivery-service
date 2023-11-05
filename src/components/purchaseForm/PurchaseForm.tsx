@@ -5,6 +5,7 @@ import { AddressForm } from "components/AddressForm/AddressForm";
 import { DishesList } from "components/dishesList/DishesList";
 import { getTotalPrice } from "utils/helpers/getTotalPrice";
 import { PurchaseFormInfo } from "utils/types/FormInfo";
+import { phoneMask } from "utils/helpers/phoneMask";
 import style from "./style.module.scss";
 
 export const PurchaseForm = (props: PurchaseFormInfo) => {
@@ -17,7 +18,9 @@ export const PurchaseForm = (props: PurchaseFormInfo) => {
             <FormValue
               isError={errors["phone"] && touched["phone"]}
               errorName={errors["phone"]}
-              handleChange={handleChange}
+              handleChange={(e) => {
+                handleChange(phoneMask(e, values.phone));
+              }}
               onBlur={handleBlur}
               defaultValueName={values["phone"]}
               label="Телефон"

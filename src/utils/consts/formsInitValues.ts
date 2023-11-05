@@ -25,6 +25,7 @@ export const registrationInitValues = (onSubmit: (value: UserRegisterModel) => v
         label: "Телефон",
         name: "phoneNumber",
         type: "tel",
+        defaultValue: "+7 (",
       },
       {
         label: "Дата рождения",
