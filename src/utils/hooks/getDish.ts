@@ -1,18 +1,15 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { checkRating, specificDish } from "utils/consts/apiUrls";
 import { DishDto } from "utils/types/Dish";
+import { useGetRequest } from "./useGetRequest";
 
-export const useDish = (id: string, token: string) => {
-  const [dishState, setDishState] = useState<{ dish: DishDto; error: string }>({ dish: {} as DishDto, error: "" });
+export const useDish = (id: string, token: string, onError: (error: string) => void) => {
+  const { data, getData } = useGetRequest<DishDto>(specificDish(id), onError);
   const [canChange, setCanChange] = useState(false);
 
   useEffect(() => {
-    axios
-      .get<DishDto>(specificDish(id))
-      .then((res) => setDishState({ dish: res.data, error: "" }))
-      .catch((e: AxiosError) => setDishState({ error: e.message, dish: dishState.dish }));
-
+    getData();
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -23,5 +20,5 @@ export const useDish = (id: string, token: string) => {
     });
   }, [canChange]);
 
-  return { ...dishState, canChange, setCanChange };
+  return { data, canChange, setCanChange };
 };

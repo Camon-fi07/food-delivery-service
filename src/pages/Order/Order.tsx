@@ -18,7 +18,7 @@ export const Order = () => {
   const { id } = useParams();
   const { data, getData, setData } = useGetRequest<OrderDto>(
     specificOrder(id!),
-    () => toast.error("Произошла ошибка при загрузке", { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
+    (error) => toast.error(error, { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
     token,
   );
   useEffect(() => {

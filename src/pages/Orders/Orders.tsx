@@ -14,7 +14,7 @@ export const Orders = () => {
   const user = useAppSelector((state) => state.userReducer);
   const { data, getData } = useGetRequest<OrderInfoDto[]>(
     order,
-    () => toast.error("Произошла ошибка при загрузке", { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
+    (error) => toast.error(error, { theme: theme?.isDark ? "dark" : "light", autoClose: 1000 }),
     user.data.token,
   );
   const cart = useAppSelector((state) => state.cartReducer);
