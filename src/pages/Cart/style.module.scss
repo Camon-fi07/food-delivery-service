@@ -17,6 +17,7 @@
   background-color: var(--btnBackground);
   font-size: 26px;
   border: var(--fieldBorder);
+  color: var(--btnText) !important;
   display: flex;
   gap: 30px;
 }

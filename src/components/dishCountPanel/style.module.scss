@@ -1,5 +1,6 @@
 .panel {
   background-color: var(--btnBackground);
+  color: var(--btnText);
   border-radius: 5px;
   overflow: hidden;
   width: 50%;
@@ -12,7 +13,6 @@
     text-align: center;
     width: 100%;
     font-size: 26px;
-    color: var(--text);
   }
   & span {
     font-size: 22px;

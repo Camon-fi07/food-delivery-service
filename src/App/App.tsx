@@ -16,7 +16,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app light">
+    <div className="app">
       <Head />
       <Outlet />
     </div>
