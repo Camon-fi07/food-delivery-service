@@ -6,7 +6,7 @@ import { Rating } from "components/rating/Rating";
 import { DishCountPanel } from "components/dishCountPanel/DIshCountPanel";
 export const MenuItem = (props: MenuItemInfo) => {
   return (
-    <article className={style.menu_item}>
+    <div className={style.menu_item}>
       <Link to={`item/${props.dish.id}`}>
         <div className={style.image}>
           {props.dish.vegetarian ? <img className={style.leaf} src={leaf} /> : ""}
@@ -33,6 +33,6 @@ export const MenuItem = (props: MenuItemInfo) => {
           <span>Для покупки необходимо авторизоваться</span>
         )}
       </div>
-    </article>
+    </div>
   );
 };

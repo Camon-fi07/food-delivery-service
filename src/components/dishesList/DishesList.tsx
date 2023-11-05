@@ -9,24 +9,26 @@ export const DishesList = ({ dishes, canChange }: DishListInfo) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.userReducer);
   return (
-    <section className={style.dishes_list}>
+    <ul className={style.dishes_list}>
       {dishes.map((dish, index) => (
-        <CartItem
-          delete={() => {
-            deleteDish(
-              user.data.token,
-              dish.id,
-              () => {
-                dispatch(getCart(user.data.token));
-              },
-              false,
-            );
-          }}
-          dish={dish}
-          index={index + 1}
-          canChange={canChange}
-        />
+        <li>
+          <CartItem
+            delete={() => {
+              deleteDish(
+                user.data.token,
+                dish.id,
+                () => {
+                  dispatch(getCart(user.data.token));
+                },
+                false,
+              );
+            }}
+            dish={dish}
+            index={index + 1}
+            canChange={canChange}
+          />
+        </li>
       ))}
-    </section>
+    </ul>
   );
 };

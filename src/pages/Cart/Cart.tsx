@@ -13,10 +13,14 @@ export const Cart = () => {
     <div className={style.cart}>
       <h2 className={style.title}>Товары в корзине</h2>
       <DishesList canChange={true} dishes={dishes} />
-      <Link className={style.link} to={"/purchase"}>
-        Верно, к оплате
-        <span>{getTotalPrice(dishes)} ₽</span>
-      </Link>
+      {dishes.length ? (
+        <Link className={style.link} to={"/purchase"}>
+          Верно, к оплате
+          <span>{getTotalPrice(dishes)} ₽</span>
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

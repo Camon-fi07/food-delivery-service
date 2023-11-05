@@ -5,7 +5,7 @@ import { convertDate } from "utils/helpers/convertDate";
 
 export const OrderItem = ({ order, onConfirm }: OrderItemOnfo) => {
   return (
-    <article className={style.order_item}>
+    <div className={style.order_item}>
       <div className={style.description}>
         <Link to={`/order/${order.id}`}>Заказ от {convertDate(order.orderTime)}</Link>
         <span>Статус заказа - {OrderStatusTranslate[order.status]}</span>
@@ -20,6 +20,6 @@ export const OrderItem = ({ order, onConfirm }: OrderItemOnfo) => {
           <b>Стоимость заказа:</b> {order.price} руб.
         </span>
       </div>
-    </article>
+    </div>
   );
 };

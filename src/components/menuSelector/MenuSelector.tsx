@@ -40,7 +40,7 @@ export const MenuSelector = (props: MenuSelectorInfo) => {
           value: key,
         }))}
         type="select"
-        defaultValueName={DishSorting.NameAsc}
+        defaultValueName={props.sorting}
         listClassNames={`${style.absolute_list}`}
         classNames={`${style.parameter}`}
       />
